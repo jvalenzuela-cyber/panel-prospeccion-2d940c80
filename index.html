@@ -115,8 +115,6 @@
   .fn-row{display:grid;grid-template-columns:130px 1fr 90px;align-items:center;gap:14px}
   .fn-row .lbl{font-size:12.5px;color:var(--muted)}
   .fn-bar{height:34px;border-radius:9px;background:linear-gradient(90deg,var(--scan2),var(--scan));display:flex;align-items:center;padding-left:13px;color:#fff;font-family:'DM Mono',monospace;font-size:14px;min-width:40px}
-  .fn-row:nth-child(1) .fn-bar{background:linear-gradient(90deg,#141d3b,#2b3560)}
-  .fn-row:nth-child(4) .fn-bar{background:linear-gradient(90deg,#0d9e78,var(--orbital))}
   .fn-row .cv{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);text-align:right}
 
   /* Horizontal bars */
@@ -309,7 +307,7 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-07-08 13:32', range:'20 may - 8 jul 2026', source:'Zoho CRM + radar.db + historial.csv', dias:50};
+const META = {updated:'2026-07-08 14:15', range:'20 may - 8 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:50};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
@@ -339,27 +337,28 @@ const RECUP = {bajas:[{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Winpo
 /*END:RECUP*/
 
 /*SYNC:KPIS*/
-const KPIS = {detectados:173, enviados:95, respuestas:32, tasa_resp:34, followups:35, follow1:35, follow2:0, demos:0, leads_zoho:37, bounces:4};
+const KPIS = {detectadas:183, enviados:95, empresas:39, respuestas:2, tasa_resp:5, followups:35, follow1:35, follow2:0, demos:0, leads_zoho:37, bounces:4};
 /*END:KPIS*/
 
 /*SYNC:FUNNEL*/
 const FUNNEL = [
-  {k:'Detectados', v:173},
-  {k:'Outreach', v:95},
-  {k:'Respuestas', v:32},
-  {k:'Demos agendadas', v:0}
+  {k:'Detectadas', v:183},
+  {k:'Contactadas', v:39},
+  {k:'Respondieron', v:2},
+  {k:'Pidió demo', v:0},
+  {k:'Demo agendada', v:0}
 ];
 /*END:FUNNEL*/
 
 /*SYNC:VERTICALS*/
 const VERTICALS = [
-  {name:'Tecnología', env:26, resp:13, tasa:50},
-  {name:'Infraestructuras', env:21, resp:4, tasa:19},
-  {name:'Retail', env:18, resp:7, tasa:39},
-  {name:'Otros', env:10, resp:4, tasa:40},
-  {name:'Seguros', env:7, resp:2, tasa:29},
+  {name:'Tecnología', env:26, resp:1, tasa:4},
+  {name:'Infraestructuras', env:21, resp:0, tasa:0},
+  {name:'Retail', env:18, resp:1, tasa:6},
+  {name:'Otros', env:10, resp:0, tasa:0},
+  {name:'Seguros', env:7, resp:0, tasa:0},
   {name:'Farma', env:4, resp:0, tasa:0},
-  {name:'Automoción', env:3, resp:2, tasa:67},
+  {name:'Automoción', env:3, resp:0, tasa:0},
   {name:'Gaming', env:2, resp:0, tasa:0},
   {name:'Hostelería', env:2, resp:0, tasa:0},
   {name:'Medios', env:1, resp:0, tasa:0},
@@ -369,8 +368,8 @@ const VERTICALS = [
 
 /*SYNC:VENDORS*/
 const VENDORS = [
-  {name:'David Ramos', env:46, resp:19, tasa:41, fu:37},
-  {name:'Alejandro Cabezas', env:34, resp:13, tasa:38, fu:32},
+  {name:'David Ramos', env:46, resp:2, tasa:4, fu:37},
+  {name:'Alejandro Cabezas', env:34, resp:0, tasa:0, fu:32},
   {name:'Juan Carlos Moreno', env:15, resp:0, tasa:0, fu:11}
 ];
 /*END:VENDORS*/
@@ -378,9 +377,9 @@ const VENDORS = [
 /*SYNC:WEEKLY*/
 const WEEKLY = [
   {wk:'18/05', env:17, resp:0},
-  {wk:'25/05', env:35, resp:2},
-  {wk:'01/06', env:0, resp:8},
-  {wk:'08/06', env:7, resp:22},
+  {wk:'25/05', env:35, resp:1},
+  {wk:'01/06', env:0, resp:1},
+  {wk:'08/06', env:7, resp:0},
   {wk:'15/06', env:7, resp:0},
   {wk:'22/06', env:3, resp:0},
   {wk:'29/06', env:19, resp:0},
@@ -390,20 +389,20 @@ const WEEKLY = [
 
 /*SYNC:FOLLOWUP*/
 const FOLLOWUP = {
-  total:80, follow1:35, follow2:0, con_reply:31,
+  total:80, follow1:35, follow2:0, con_reply:2,
   states:[
     {s:'En pausa (esperando)', k:'paused', n:32, c:'#61708a'},
     {s:'Cerrado: ya era cliente', k:'cancelled_now_client', n:28, c:'#1C7BBE'},
     {s:'Pendiente 1er toque', k:'pending', n:14, c:'#e0952c'},
     {s:'Rebotado', k:'bounced', n:4, c:'#e2564a'},
-    {s:'Respondido', k:'replied', n:2, c:'#07D4A1'}
+    {s:'Con actividad en hilo', k:'replied', n:2, c:'#07D4A1'}
   ]
 };
 /*END:FOLLOWUP*/
 
 /*SYNC:TRIKI*/
 const TRIKI = {
-  detectados:2838, crisis:2984, outreach:137,
+  base:2838, contactables:201, crisis:596, outreach:137,
   ciudades:[{c:'Madrid', n:18},{c:'Bilbao', n:16},{c:'Pamplona', n:16},{c:'Valencia', n:13},{c:'Barcelona', n:12},{c:'Sevilla', n:12},{c:'Cádiz', n:11},{c:'Málaga', n:7}]
 };
 /*END:TRIKI*/
@@ -511,33 +510,32 @@ function renderResumen(){
     if(linkable) card.onclick=()=>go(VIEW_OF[p.key]);
     pc.appendChild(card);
   });
-  $('#resumen-note').innerHTML=`<b>Cuenta contactada</b> = un lead de prospección creado en Zoho (una empresa, negocio o cuenta). En Karcher B2B eso son ${KPIS.enviados} emails a ${KPIS.leads_zoho} empresas (varios contactos por empresa). Karcher B2C aún no tiene flujo activo. <span class="pill-src">Fuente: Zoho CRM · utm_campaign</span>`;
+  $('#resumen-note').innerHTML=`<b>Cuenta contactada</b> = un lead de prospección creado en Zoho (una empresa, negocio o cuenta). En Karcher B2B esas cuentas equivalen a ${KPIS.empresas} empresas alcanzadas con ${KPIS.enviados} emails (varios contactos por empresa). Karcher B2C aún no tiene flujo activo. <span class="pill-src">Fuente: Zoho CRM · utm_campaign</span>`;
 }
 
 function renderB2B(){
   const k=[
-    {k:'Emails enviados', v:KPIS.enviados, d:`a ${KPIS.leads_zoho} empresas`, cls:'accent'},
-    {k:'Tasa de respuesta', v:KPIS.tasa_resp+'%', d:`${KPIS.respuestas} respuestas`, tag:{t:KPIS.tasa_resp+'%',c:'g'}},
+    {k:'Empresas contactadas', v:KPIS.empresas, d:`${KPIS.enviados} emails enviados`, cls:'accent'},
+    {k:'Respuestas reales', v:KPIS.respuestas, d:`${KPIS.tasa_resp}% · auditadas en Gmail`, tag:{t:KPIS.tasa_resp+'%',c:KPIS.tasa_resp>=15?'g':'r'}},
     {k:'Follow-ups', v:KPIS.followups, d:`${KPIS.follow2} segundos toques`, tag:{t:'F1',c:'o'}},
-    {k:'Demos agendadas', v:KPIS.demos, d:'atribuibles (Zoho)', tag:{t:'0',c:'r'}}
+    {k:'Demos agendadas', v:KPIS.demos, d:'ninguna pidió demo', tag:{t:'0',c:'r'}}
   ];
   fillKpi('#b2b-kpi',k);
-  // funnel
+  // funnel (color por posición: 1ª oscura, última verde)
   const max=Math.max(...FUNNEL.map(f=>f.v))||1;
   const fb=$('#funnel'); fb.innerHTML='';
   FUNNEL.forEach((f,i)=>{const w=Math.max(f.v/max*100,f.v>0?7:0);
     const cv=i>0?`${pct(f.v,FUNNEL[i-1].v)}% del previo`:'';
-    fb.appendChild(el('div','fn-row',`<div class="lbl">${f.k}</div><div class="fn-bar" style="width:${w}%">${f.v}</div><div class="cv">${cv}</div>`));});
-  $('#funnel-note').innerHTML=`<b>Lectura:</b> convierte bien hasta respuesta (${pct(FUNNEL[2].v,FUNNEL[1].v)}%), pero <b>ninguna respuesta ha derivado en demo registrada en el CRM</b>. El cuello de botella es respuesta → demo. <span class="pill-src">Fuente: historial.csv + Zoho</span>`;
-  // insight
-  const el5=VERTICALS.filter(v=>v.env>=5);
-  const best=[...el5].sort((a,b)=>b.tasa-a.tasa)[0], worst=[...el5].sort((a,b)=>a.tasa-b.tasa)[0];
+    const bg=i===0?';background:linear-gradient(90deg,#141d3b,#2b3560)':i===FUNNEL.length-1?';background:linear-gradient(90deg,#0d9e78,var(--orbital))':'';
+    fb.appendChild(el('div','fn-row',`<div class="lbl">${f.k}</div><div class="fn-bar" style="width:${w}%${bg}">${f.v}</div><div class="cv">${cv}</div>`));});
+  $('#funnel-note').innerHTML=`<b>Lectura:</b> de ${FUNNEL[1].v} empresas contactadas solo <b>${FUNNEL[2].v} respondieron</b> (${KPIS.tasa_resp}%) y <b>ninguna pidió demo</b>. La prospección todavía no tiene tracción. <span class="pill-src">Fuente: envíos radar.db + respuestas auditadas en Gmail</span>`;
+  // insight (historia real verificada)
   $('#insight-card').innerHTML=`<div class="ch"><h3>Qué mirar</h3></div>
     <div style="display:flex;flex-direction:column;gap:12px">
-      <div class="insight"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
-        <div><b>${best.name}</b> responde al ${best.tasa}% y <b>${worst.name}</b> al ${worst.tasa}% pese a volumen alto. Foco mal repartido.</div></div>
+      <div class="insight"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+        <div>El detector del radar marcaba 32 respuestas; auditando Gmail son <b>${KPIS.respuestas} reales</b> (Bizum, Decathlon). El resto eran follow-ups propios, recordatorios del tracker y rebotes. <b>Bug en followup_checker a corregir.</b></div></div>
       <div class="insight"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        <div>Las respuestas llegan <b>1 a 2 semanas</b> tras el envío: el pico de envío fue a finales de mayo y el de respuestas la primera de junio.</div></div>
+        <div><b>${KPIS.respuestas} de ${KPIS.empresas}</b> empresas en 7 semanas y <b>0 demos</b>: el problema no es volumen, es mensaje y targeting. Iterar el copy y a quién se contacta antes de subir envíos.</div></div>
     </div>`;
   // weekly
   const wmax=Math.max(...WEEKLY.flatMap(w=>[w.env,w.resp]))||1;
@@ -567,10 +565,10 @@ function renderB2B(){
 
 function renderTriki(){
   const k=[
-    {k:'Restaurantes en base', v:gk(TRIKI.detectados), d:'con ficha en el radar'},
-    {k:'Crisis detectadas', v:gk(TRIKI.crisis), d:'eventos de reputación'},
-    {k:'Outreach enviado', v:TRIKI.outreach, d:'restaurantes contactados', cls:'accent'},
-    {k:'Cobertura', v:pct(TRIKI.outreach,TRIKI.detectados)+'%', d:'contactados / en base', tag:{t:'early',c:'o'}}
+    {k:'Restaurantes en base', v:gk(TRIKI.base), d:'detectados (con y sin email)'},
+    {k:'Contactables (con email)', v:gk(TRIKI.contactables), d:pct(TRIKI.contactables,TRIKI.base)+'% de la base', cls:'accent'},
+    {k:'Con crisis', v:gk(TRIKI.crisis), d:'restaurantes con reseñas negativas'},
+    {k:'Outreach enviado', v:TRIKI.outreach, d:pct(TRIKI.outreach,TRIKI.contactables)+'% de los contactables', tag:{t:pct(TRIKI.outreach,TRIKI.contactables)+'%',c:'g'}}
   ];
   fillKpi('#triki-kpi',k);
   const max=Math.max(...TRIKI.ciudades.map(c=>c.n))||1;
@@ -579,7 +577,7 @@ function renderTriki(){
     cb.appendChild(el('div','hb',`<div class="name">${c.c}</div><div class="track"><div class="fill" style="width:${w}%"></div><div class="val${w>20?' in':''}">${c.n}</div></div>`));});
   $('#triki-insight').innerHTML=`<div class="ch"><h3>Qué mirar</h3></div>
     <div class="insight"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h18M12 3v18"/></svg>
-    <div><b>${gk(TRIKI.detectados)} restaurantes</b> en la base y <b>${gk(TRIKI.crisis)} crisis</b> detectadas; solo <b>${TRIKI.outreach} contactados</b>. Pipeline en fase inicial: el techo de captación es enorme frente al outreach actual.</div></div>
+    <div><b>${gk(TRIKI.base)} restaurantes</b> en base, pero solo <b>${gk(TRIKI.contactables)} tienen email</b> (${pct(TRIKI.contactables,TRIKI.base)}%). Sobre los contactables ya se ha llegado al <b>${pct(TRIKI.outreach,TRIKI.contactables)}%</b>. El cuello real no es detectar restaurantes, es conseguir el email de los <b>${gk(TRIKI.base-TRIKI.contactables)}</b> que no lo tienen.</div></div>
     <div class="note">Producto de reseñas, separado del radar de eliminación. <span class="pill-src">Fuente: tablas restaurantes</span></div>`;
 }
 
