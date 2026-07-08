@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B1124">
+<title>RepScan · Panel de Prospección</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rep:#0B1124; --rep2:#141d3b; --scan:#1C7BBE; --scan2:#1a7fd4; --orbital:#07D4A1;
+    --paper:#eef1f7; --card:#ffffff; --ink:#0B1124; --muted:#61708a;
+    --line:rgba(11,17,36,.10); --line2:rgba(11,17,36,.06);
+    --good:#10b489; --bad:#e2564a; --warn:#e0952c;
+    --shadow:0 8px 30px rgba(11,17,36,.08); --shadow-sm:0 2px 10px rgba(11,17,36,.05);
+    --sb:248px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--paper); color:var(--ink); font-weight:300;
+    -webkit-font-smoothing:antialiased; line-height:1.5;
+  }
+  .mono{font-family:'DM Mono',ui-monospace,monospace}
+  h1,h2,h3{font-weight:600;margin:0}
+  a{color:var(--scan);text-decoration:none}
+
+  /* ---------- Sidebar ---------- */
+  .sb{
+    position:fixed;top:0;left:0;bottom:0;width:var(--sb);z-index:40;
+    background:linear-gradient(175deg,#0B1124,#141d3b);color:#fff;
+    display:flex;flex-direction:column;padding:22px 16px;
+  }
+  .sb .logo{display:flex;align-items:center;gap:10px;padding:2px 8px 22px}
+  .sb .logo img{height:26px}
+  .sb .nav{display:flex;flex-direction:column;gap:3px;flex:1}
+  .sb .nav button{
+    display:flex;align-items:center;gap:11px;width:100%;border:0;cursor:pointer;
+    background:none;color:rgba(255,255,255,.62);font-family:inherit;font-size:13.5px;font-weight:400;
+    padding:10px 12px;border-radius:10px;text-align:left;transition:.15s;letter-spacing:.01em;
+  }
+  .sb .nav button:hover{background:rgba(255,255,255,.06);color:#fff}
+  .sb .nav button.on{background:rgba(28,123,190,.22);color:#fff;font-weight:500}
+  .sb .nav button.on .ic{color:var(--orbital)}
+  .sb .nav .ic{width:18px;height:18px;flex:0 0 auto;opacity:.9;color:rgba(255,255,255,.55)}
+  .sb .foot{font-size:10.5px;color:rgba(255,255,255,.45);line-height:1.6;border-top:1px solid rgba(255,255,255,.1);padding-top:14px;letter-spacing:.02em}
+  .sb .foot b{color:rgba(255,255,255,.8);font-weight:500}
+
+  /* ---------- Main ---------- */
+  main{margin-left:var(--sb);min-height:100vh}
+  .wrap{max-width:1180px;margin:0 auto;padding:30px 38px 60px}
+  .topbar{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px;flex-wrap:wrap}
+  .topbar .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--scan);font-weight:500}
+  .topbar h1{font-size:26px;margin-top:5px;letter-spacing:-.01em}
+  .topbar .sub{font-size:13px;color:var(--muted);margin-top:3px}
+  .topbar .meta{text-align:right;font-size:11px;color:var(--muted);line-height:1.7}
+  .topbar .meta .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orbital);margin-right:5px;vertical-align:middle}
+
+  .view{display:none;animation:fade .28s ease}
+  .view.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+  .sec{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:30px 2px 13px;display:flex;align-items:center;gap:9px}
+  .sec:first-of-type{margin-top:4px}
+  .sec .ln{flex:1;height:1px;background:var(--line)}
+
+  .grid{display:grid;gap:16px}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g-2-1{grid-template-columns:2fr 1fr}
+  @media(max-width:1000px){.g4{grid-template-columns:repeat(2,1fr)}.g-2-1,.g3,.g2{grid-template-columns:1fr}}
+
+  .card{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm)}
+  .card h3{font-size:14.5px;margin-bottom:2px}
+  .card .ch{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;gap:12px}
+  .card .ch .hint{font-size:11px;color:var(--muted);font-weight:400}
+
+  /* KPI cards */
+  .kpi{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:18px 18px 16px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+  .kpi .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .kpi .v{font-family:'DM Mono',monospace;font-size:38px;font-weight:500;line-height:1;margin:12px 0 4px;color:var(--rep);letter-spacing:-.02em}
+  .kpi .d{font-size:11.5px;color:var(--muted);font-weight:400}
+  .kpi.accent{background:linear-gradient(160deg,#0B1124,#1a2447);color:#fff}
+  .kpi.accent .k{color:rgba(255,255,255,.6)}
+  .kpi.accent .v{color:#fff}
+  .kpi.accent .d{color:rgba(255,255,255,.65)}
+  .kpi .tag{position:absolute;top:14px;right:14px;font-size:10px;font-family:'DM Mono',monospace;padding:3px 8px;border-radius:999px}
+  .kpi .tag.g{background:rgba(16,180,137,.14);color:var(--good)}
+  .kpi .tag.o{background:rgba(224,149,44,.15);color:var(--warn)}
+  .kpi .tag.r{background:rgba(226,86,74,.14);color:var(--bad)}
+
+  /* Funnel */
+  .funnel{display:flex;flex-direction:column;gap:11px}
+  .fn-row{display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:14px}
+  .fn-row .lbl{font-size:12.5px;color:var(--muted);font-weight:400}
+  .fn-bar{height:34px;border-radius:9px;background:linear-gradient(90deg,var(--scan2),var(--scan));display:flex;align-items:center;padding-left:13px;color:#fff;font-family:'DM Mono',monospace;font-size:14px;min-width:40px;transition:width .5s}
+  .fn-row:nth-child(1) .fn-bar{background:linear-gradient(90deg,#141d3b,#2b3560)}
+  .fn-row:nth-child(4) .fn-bar{background:linear-gradient(90deg,#0d9e78,var(--orbital))}
+  .fn-row .cv{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);text-align:right}
+
+  /* Horizontal bars (verticals, cities) */
+  .hbars{display:flex;flex-direction:column;gap:9px}
+  .hb{display:grid;grid-template-columns:118px 1fr;align-items:center;gap:12px}
+  .hb .name{font-size:12.5px;font-weight:400;color:var(--ink);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hb .track{position:relative;height:26px;background:var(--line2);border-radius:7px;overflow:hidden}
+  .hb .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--scan2),var(--scan));border-radius:7px;transition:width .5s}
+  .hb .val{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-family:'DM Mono',monospace;font-size:12px;color:var(--rep);font-weight:500}
+  .hb .val.in{color:#fff;right:auto;left:9px}
+
+  /* weekly grouped bars */
+  .weekly{display:flex;align-items:flex-end;gap:14px;height:190px;padding:6px 4px 0}
+  .wk{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;height:100%;justify-content:flex-end}
+  .wk .bars{display:flex;gap:4px;align-items:flex-end;height:100%;width:100%;justify-content:center}
+  .wk .bar{width:15px;border-radius:5px 5px 0 0;transition:height .5s;position:relative}
+  .wk .bar.e{background:linear-gradient(180deg,var(--scan),#155a8c)}
+  .wk .bar.r{background:linear-gradient(180deg,var(--orbital),#08a67e)}
+  .wk .bar .n{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)}
+  .wk .wl{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--muted);white-space:nowrap}
+  .legend{display:flex;gap:16px;margin-top:2px}
+  .legend span{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);font-weight:400}
+  .legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+  /* table */
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;padding:11px 10px;font-size:13px}
+  th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;border-bottom:1px solid var(--line)}
+  td{border-bottom:1px solid var(--line2);font-weight:400}
+  tr:last-child td{border-bottom:0}
+  td.num,th.num{text-align:right;font-family:'DM Mono',monospace}
+  .minibar{height:6px;background:var(--line2);border-radius:4px;overflow:hidden;min-width:70px}
+  .minibar i{display:block;height:100%;background:linear-gradient(90deg,var(--scan2),var(--scan));border-radius:4px}
+
+  /* segmented pipeline bar */
+  .seg{display:flex;height:40px;border-radius:9px;overflow:hidden;margin-bottom:14px}
+  .seg .s{display:flex;align-items:center;justify-content:center;color:#fff;font-family:'DM Mono',monospace;font-size:12px;min-width:2px}
+  .seglg{display:grid;grid-template-columns:1fr 1fr;gap:9px 22px}
+  .seglg .r{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink);font-weight:400}
+  .seglg .r i{width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+  .seglg .r .c{margin-left:auto;font-family:'DM Mono',monospace;color:var(--muted)}
+
+  /* historial timeline */
+  .tl{display:flex;flex-direction:column}
+  .tl .it{display:grid;grid-template-columns:118px 128px 1fr;gap:14px;align-items:center;padding:10px 6px;border-bottom:1px solid var(--line2)}
+  .tl .it:last-child{border-bottom:0}
+  .tl .dt{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted)}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;padding:4px 10px;border-radius:999px;white-space:nowrap}
+  .badge.env{background:rgba(28,123,190,.12);color:var(--scan)}
+  .badge.rep{background:rgba(16,180,137,.14);color:var(--good)}
+  .badge.fu{background:rgba(224,149,44,.15);color:var(--warn)}
+  .badge.zoho{background:rgba(11,17,36,.08);color:var(--rep)}
+  .badge.bnc{background:rgba(226,86,74,.14);color:var(--bad)}
+  .badge.disc{background:rgba(97,112,138,.14);color:var(--muted)}
+  .tl .co{font-size:13px;font-weight:400}
+  .tl .co small{color:var(--muted);font-weight:400}
+
+  .note{font-size:11.5px;color:var(--muted);font-weight:400;line-height:1.6;margin-top:14px;padding-top:13px;border-top:1px solid var(--line2)}
+  .note b{color:var(--ink);font-weight:500}
+  .insight{background:linear-gradient(135deg,rgba(28,123,190,.07),rgba(7,212,161,.07));border:1px solid rgba(28,123,190,.16);border-radius:13px;padding:15px 17px;font-size:13px;color:var(--ink);font-weight:400;line-height:1.6;display:flex;gap:12px;align-items:flex-start}
+  .insight .ic{color:var(--scan);flex:0 0 auto;margin-top:1px}
+  .insight b{font-weight:600}
+  .pill-src{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:var(--line2);padding:2px 7px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<aside class="sb">
+  <div class="logo"><img src="https://www.repscan.com/wp-content/uploads/2026/03/logo-repscan-white.png" alt="RepScan"></div>
+  <nav class="nav" id="nav">
+    <button data-v="resumen" class="on"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>Resumen</button>
+    <button data-v="verticales"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="20" x2="4" y2="10"/><line x1="10" y1="20" x2="10" y2="4"/><line x1="16" y1="20" x2="16" y2="13"/><line x1="21" y1="20" x2="3" y2="20"/></svg>Por vertical</button>
+    <button data-v="pipeline"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>Follow-up</button>
+    <button data-v="resenas"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polygon points="12 3 14.7 8.5 21 9.3 16.5 13.6 17.6 20 12 17 6.4 20 7.5 13.6 3 9.3 9.3 8.5"/></svg>Reseñas · Triki</button>
+    <button data-v="historial"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Historial</button>
+  </nav>
+  <div class="foot" id="foot">Cargando…</div>
+</aside>
+
+<main>
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">Prospección automática</div>
+      <h1>Panel de Prospección</h1>
+      <div class="sub" id="subhead">Radar de eliminación y captación de reseñas</div>
+    </div>
+    <div class="meta" id="topmeta"></div>
+  </div>
+
+  <!-- ============ RESUMEN ============ -->
+  <section class="view on" id="v-resumen">
+    <div class="grid g4" id="kpirow"></div>
+
+    <div class="sec">Embudo del radar <span class="ln"></span></div>
+    <div class="grid g-2-1">
+      <div class="card">
+        <div class="ch"><h3>De detección a demo</h3><span class="hint">contenido negativo · radar</span></div>
+        <div class="funnel" id="funnel"></div>
+        <div class="note" id="funnel-note"></div>
+      </div>
+      <div class="card" id="insight-card"></div>
+    </div>
+
+    <div class="sec">Ritmo semanal <span class="ln"></span></div>
+    <div class="card">
+      <div class="ch"><h3>Envíos y respuestas por semana</h3><span class="hint">lunes de cada semana</span></div>
+      <div class="weekly" id="weekly"></div>
+      <div class="legend"><span><i style="background:var(--scan)"></i>Outreach enviado</span><span><i style="background:var(--orbital)"></i>Respuestas</span></div>
+    </div>
+  </section>
+
+  <!-- ============ VERTICALES ============ -->
+  <section class="view" id="v-verticales">
+    <div class="sec">Volumen por vertical <span class="ln"></span></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="ch"><h3>Outreach enviado</h3><span class="hint">nº de empresas contactadas</span></div>
+        <div class="hbars" id="vert-bars"></div>
+      </div>
+      <div class="card">
+        <div class="ch"><h3>Tasa de respuesta por vertical</h3><span class="hint">respuestas / enviados</span></div>
+        <table id="vert-table"><thead><tr><th>Vertical</th><th class="num">Env.</th><th class="num">Resp.</th><th class="num">Tasa</th></tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="ch"><h3>Rendimiento por comercial</h3><span class="hint">enviados · respuestas · tasa</span></div>
+      <table id="vendor-table"><thead><tr><th>Comercial</th><th class="num">Enviados</th><th class="num">Respuestas</th><th>Tasa de respuesta</th><th class="num">Follow-ups</th></tr></thead><tbody></tbody></table>
+    </div>
+  </section>
+
+  <!-- ============ PIPELINE ============ -->
+  <section class="view" id="v-pipeline">
+    <div class="sec">Estado del seguimiento <span class="ln"></span></div>
+    <div class="grid g4" id="fu-kpi"></div>
+    <div class="card" style="margin-top:16px">
+      <div class="ch"><h3>Hilos en seguimiento por estado</h3><span class="hint" id="fu-total"></span></div>
+      <div class="seg" id="fu-seg"></div>
+      <div class="seglg" id="fu-legend"></div>
+      <div class="note" id="fu-note"></div>
+    </div>
+  </section>
+
+  <!-- ============ RESEÑAS TRIKI ============ -->
+  <section class="view" id="v-resenas">
+    <div class="sec">Captación de reseñas · restauración <span class="ln"></span></div>
+    <div class="grid g4" id="triki-kpi"></div>
+    <div class="grid g-2-1" style="margin-top:16px">
+      <div class="card">
+        <div class="ch"><h3>Outreach enviado por ciudad</h3><span class="hint">restaurantes contactados</span></div>
+        <div class="hbars" id="triki-cities"></div>
+      </div>
+      <div class="card" id="triki-insight"></div>
+    </div>
+  </section>
+
+  <!-- ============ HISTORIAL ============ -->
+  <section class="view" id="v-historial">
+    <div class="sec">Últimos movimientos <span class="ln"></span></div>
+    <div class="card">
+      <div class="ch"><h3>Historial de cambios</h3><span class="hint">eventos del radar, más reciente primero</span></div>
+      <div class="tl" id="tl"></div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<script>
+/* ==================================================================
+   DATOS  ·  horneados por sync_panel.py desde radar.db + historial.csv
+   + tablas de restaurantes + Zoho CRM.  No editar a mano.
+   ================================================================== */
+/*SYNC:META*/
+const META = {updated:'2026-07-07 17:05', range:'20 may - 7 jul 2026', source:'radar.db + historial.csv + Zoho CRM', dias:49};
+/*END:META*/
+
+/*SYNC:KPIS*/
+const KPIS = {detectados:173, enviados:95, respuestas:32, tasa_resp:34, followups:35, follow1:35, follow2:0, demos:0, leads_zoho:37, bounces:3};
+/*END:KPIS*/
+
+/*SYNC:FUNNEL*/
+const FUNNEL = [
+  {k:'Detectados', v:173},
+  {k:'Outreach', v:95},
+  {k:'Respuestas', v:32},
+  {k:'Demos agendadas', v:0}
+];
+/*END:FUNNEL*/
+
+/*SYNC:VERTICALS*/
+const VERTICALS = [
+  {name:'Tecnología', env:26, resp:13, tasa:50},
+  {name:'Infraestructuras', env:21, resp:4, tasa:19},
+  {name:'Retail', env:18, resp:7, tasa:39},
+  {name:'Otros', env:10, resp:4, tasa:40},
+  {name:'Seguros', env:7, resp:2, tasa:29},
+  {name:'Farma', env:4, resp:0, tasa:0},
+  {name:'Automoción', env:3, resp:2, tasa:67},
+  {name:'Gaming', env:2, resp:0, tasa:0},
+  {name:'Hostelería', env:2, resp:0, tasa:0},
+  {name:'Medios', env:1, resp:0, tasa:0},
+  {name:'Deporte', env:1, resp:0, tasa:0}
+];
+/*END:VERTICALS*/
+
+/*SYNC:VENDORS*/
+const VENDORS = [
+  {name:'David Ramos', env:46, resp:19, tasa:41, fu:37},
+  {name:'Alejandro Cabezas', env:34, resp:13, tasa:38, fu:32},
+  {name:'Juan Carlos Moreno', env:15, resp:0, tasa:0, fu:11}
+];
+/*END:VENDORS*/
+
+/*SYNC:WEEKLY*/
+const WEEKLY = [
+  {wk:'18/05', env:17, resp:0},
+  {wk:'25/05', env:35, resp:2},
+  {wk:'01/06', env:0, resp:8},
+  {wk:'08/06', env:7, resp:22},
+  {wk:'15/06', env:7, resp:0},
+  {wk:'22/06', env:3, resp:0},
+  {wk:'29/06', env:19, resp:0},
+  {wk:'06/07', env:7, resp:0}
+];
+/*END:WEEKLY*/
+
+/*SYNC:FOLLOWUP*/
+const FOLLOWUP = {
+  total:80, follow1:35, follow2:0, con_reply:31,
+  states:[
+    {s:'En pausa (esperando)', k:'paused', n:32, c:'#61708a'},
+    {s:'Cerrado: ya era cliente', k:'cancelled_now_client', n:25, c:'#1C7BBE'},
+    {s:'Pendiente 1er toque', k:'pending', n:18, c:'#e0952c'},
+    {s:'Rebotado', k:'bounced', n:3, c:'#e2564a'},
+    {s:'Respondido', k:'replied', n:2, c:'#07D4A1'}
+  ]
+};
+/*END:FOLLOWUP*/
+
+/*SYNC:TRIKI*/
+const TRIKI = {
+  detectados:2838, crisis:2984, outreach:131,
+  ciudades:[{c:'Madrid', n:17},{c:'Bilbao', n:16},{c:'Pamplona', n:15},{c:'Sevilla', n:12},{c:'Valencia', n:12},{c:'Barcelona', n:11},{c:'Cádiz', n:11},{c:'Málaga', n:7}]
+};
+/*END:TRIKI*/
+
+/*SYNC:HISTORIAL*/
+const HISTORIAL = [
+  {dt:'07/07 08:25', a:'outreach_enviado', e:'Carnival Cruise Line', v:'Juan Carlos Moreno', g:9},
+  {dt:'07/07 08:25', a:'brief_enviado', e:'(global)', v:'', g:0},
+  {dt:'07/07 08:24', a:'lead_zoho_creado', e:'Carnival Cruise Line', v:'Juan Carlos Moreno', g:9},
+  {dt:'07/07 08:24', a:'outreach_enviado', e:'Carnival Cruise Line', v:'Juan Carlos Moreno', g:9},
+  {dt:'07/07 08:23', a:'descartado_premisa', e:'Enusa Industrias Avanzadas', v:'', g:0},
+  {dt:'07/07 08:23', a:'lead_zoho_creado', e:'ARSAT', v:'David Ramos', g:9},
+  {dt:'07/07 08:23', a:'outreach_enviado', e:'ARSAT', v:'David Ramos', g:9},
+  {dt:'07/07 08:22', a:'descartado_premisa', e:'TNT / FedEx Logistics', v:'', g:0},
+  {dt:'06/07 08:34', a:'brief_enviado', e:'(global)', v:'', g:0},
+  {dt:'06/07 08:33', a:'outreach_enviado', e:'CeX España', v:'Juan Carlos Moreno', g:9},
+  {dt:'06/07 08:32', a:'lead_zoho_creado', e:'CeX España', v:'Juan Carlos Moreno', g:9},
+  {dt:'06/07 08:32', a:'outreach_enviado', e:'CeX España', v:'Juan Carlos Moreno', g:9},
+  {dt:'06/07 08:31', a:'outreach_enviado', e:'La Segunda Seguros', v:'David Ramos', g:10},
+  {dt:'06/07 08:30', a:'descartado_premisa', e:'Pick n Pay', v:'', g:0},
+  {dt:'06/07 08:30', a:'lead_zoho_creado', e:'La Segunda Seguros', v:'David Ramos', g:10},
+  {dt:'06/07 08:30', a:'outreach_enviado', e:'La Segunda Seguros', v:'David Ramos', g:10},
+  {dt:'06/07 08:29', a:'descartado_premisa', e:'Lactalis', v:'', g:0},
+  {dt:'06/07 08:29', a:'descartado_premisa', e:'Luzu TV', v:'', g:0},
+  {dt:'06/07 08:29', a:'descartado_premisa', e:'Nintendo', v:'', g:0},
+  {dt:'03/07 08:27', a:'outreach_enviado', e:'Change Healthcare', v:'David Ramos', g:10},
+  {dt:'03/07 08:27', a:'brief_enviado', e:'(global)', v:'', g:0},
+  {dt:'03/07 08:25', a:'descartado_premisa', e:'Grupo Gloria', v:'', g:0},
+  {dt:'03/07 08:25', a:'descartado_premisa', e:'Nintendo', v:'', g:0},
+  {dt:'03/07 08:25', a:'descartado_premisa', e:'CeX España', v:'', g:0},
+  {dt:'03/07 08:25', a:'lead_zoho_creado', e:'Change Healthcare', v:'David Ramos', g:10},
+  {dt:'03/07 08:25', a:'outreach_enviado', e:'Change Healthcare', v:'David Ramos', g:10},
+  {dt:'02/07 08:30', a:'brief_enviado', e:'(global)', v:'', g:0},
+  {dt:'02/07 08:29', a:'lead_zoho_creado', e:'Basic-Fit', v:'Alejandro Cabezas', g:9},
+  {dt:'02/07 08:29', a:'outreach_enviado', e:'Basic-Fit', v:'Alejandro Cabezas', g:9},
+  {dt:'02/07 08:28', a:'outreach_enviado', e:'Antel', v:'Juan Carlos Moreno', g:9},
+  {dt:'02/07 08:27', a:'lead_zoho_creado', e:'Antel', v:'Juan Carlos Moreno', g:9},
+  {dt:'02/07 08:27', a:'outreach_enviado', e:'Antel', v:'Juan Carlos Moreno', g:9},
+  {dt:'02/07 08:26', a:'outreach_enviado', e:'Temu', v:'Alejandro Cabezas', g:10},
+  {dt:'02/07 08:25', a:'descartado_premisa', e:'Nintendo', v:'', g:0},
+  {dt:'02/07 08:25', a:'lead_zoho_creado', e:'Temu', v:'Alejandro Cabezas', g:10},
+  {dt:'02/07 08:25', a:'outreach_enviado', e:'Temu', v:'Alejandro Cabezas', g:10},
+  {dt:'02/07 08:24', a:'descartado_premisa', e:'Vodafone España / Lowi', v:'', g:0},
+  {dt:'01/07 08:30', a:'brief_enviado', e:'(global)', v:'', g:0},
+  {dt:'01/07 08:29', a:'outreach_enviado', e:'Rolser', v:'David Ramos', g:10},
+  {dt:'01/07 08:28', a:'outreach_enviado', e:'Rolser', v:'David Ramos', g:10},
+  {dt:'01/07 08:27', a:'outreach_enviado', e:'Aflac Japan', v:'Alejandro Cabezas', g:10},
+  {dt:'01/07 08:27', a:'lead_zoho_creado', e:'Rolser', v:'David Ramos', g:10},
+  {dt:'01/07 08:25', a:'lead_zoho_creado', e:'Aflac Japan', v:'Alejandro Cabezas', g:10},
+  {dt:'01/07 08:25', a:'outreach_enviado', e:'Aflac Japan', v:'Alejandro Cabezas', g:10},
+  {dt:'01/07 08:24', a:'descartado_premisa', e:'Temu', v:'', g:0}
+];
+/*END:HISTORIAL*/
+
+/* ==================================================================
+   RENDER
+   ================================================================== */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const el=(t,c,h)=>{const n=document.createElement(t);if(c)n.className=c;if(h!=null)n.innerHTML=h;return n;};
+const pct=(a,b)=>b?Math.round(100*a/b):0;
+const gk=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+
+function renderMeta(){
+  $('#topmeta').innerHTML = `<span class="dot"></span>Actualizado ${META.updated}<br>${META.range} · ${META.dias} días`;
+  $('#foot').innerHTML = `<b>Fuente</b><br>${META.source}<br><br>Datos internos RepScan.<br>Actualización diaria automática.`;
+}
+
+function renderKPIs(){
+  const cards=[
+    {k:'Outreach enviado', v:KPIS.enviados, d:`a ${KPIS.leads_zoho} leads creados en Zoho`, cls:'accent'},
+    {k:'Tasa de respuesta', v:KPIS.tasa_resp+'%', d:`${KPIS.respuestas} respuestas de ${KPIS.enviados}`, tag:{t:KPIS.tasa_resp+'%',c:'g'}},
+    {k:'Follow-ups enviados', v:KPIS.followups, d:`${KPIS.follow2} segundos toques`, tag:{t:'F1',c:'o'}},
+    {k:'Demos agendadas', v:KPIS.demos, d:'atribuibles al radar (Zoho)', tag:{t:'0',c:'r'}}
+  ];
+  $('#kpirow').innerHTML='';
+  cards.forEach(c=>{
+    const n=el('div','kpi'+(c.cls?' '+c.cls:''));
+    n.innerHTML=(c.tag?`<span class="tag ${c.tag.c}">${c.tag.t}</span>`:'')+
+      `<div class="k">${c.k}</div><div class="v">${c.v}</div><div class="d">${c.d}</div>`;
+    $('#kpirow').appendChild(n);
+  });
+}
+
+function renderFunnel(){
+  const max=Math.max(...FUNNEL.map(f=>f.v))||1;
+  const box=$('#funnel'); box.innerHTML='';
+  FUNNEL.forEach((f,i)=>{
+    const w=Math.max(f.v/max*100, f.v>0?7:0);
+    const cv = i>0 ? `${pct(f.v,FUNNEL[i-1].v)}% del paso previo` : `${pct(f.v, KPIS.detectados)}% base`;
+    const row=el('div','fn-row');
+    row.innerHTML=`<div class="lbl">${f.k}</div><div class="fn-bar" style="width:${w}%">${f.v}</div><div class="cv">${i>0?cv:''}</div>`;
+    box.appendChild(row);
+  });
+  $('#funnel-note').innerHTML=`<b>Lectura:</b> el radar convierte bien de detección a contacto y de contacto a respuesta (${pct(FUNNEL[2].v,FUNNEL[1].v)}%), pero <b>ninguna respuesta ha derivado en demo registrada en el CRM</b>. El salto respuesta → demo es el cuello de botella. <span class="pill-src">Fuente: historial.csv + Zoho</span>`;
+}
+
+function renderInsight(){
+  const best=[...VERTICALS].filter(v=>v.env>=5).sort((a,b)=>b.tasa-a.tasa)[0];
+  const worst=[...VERTICALS].filter(v=>v.env>=5).sort((a,b)=>a.tasa-b.tasa)[0];
+  $('#insight-card').className='card';
+  $('#insight-card').innerHTML=`<div class="ch"><h3>Qué mirar</h3></div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="insight"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg>
+        <div><b>${best.name}</b> responde al ${best.tasa}% y <b>${worst.name}</b> solo al ${worst.tasa}% pese a volumen alto. Merece reasignar foco.</div></div>
+      <div class="insight"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div>Las respuestas llegan <b>1 a 2 semanas</b> después del envío: el pico de envío fue a finales de mayo y el de respuestas la primera de junio.</div></div>
+    </div>`;
+}
+
+function renderWeekly(){
+  const max=Math.max(...WEEKLY.flatMap(w=>[w.env,w.resp]))||1;
+  const box=$('#weekly'); box.innerHTML='';
+  WEEKLY.forEach(w=>{
+    const wk=el('div','wk');
+    const he=Math.max(w.env/max*100,w.env>0?3:0), hr=Math.max(w.resp/max*100,w.resp>0?3:0);
+    wk.innerHTML=`<div class="bars">
+        <div class="bar e" style="height:${he}%">${w.env>0?`<span class="n">${w.env}</span>`:''}</div>
+        <div class="bar r" style="height:${hr}%">${w.resp>0?`<span class="n">${w.resp}</span>`:''}</div>
+      </div><div class="wl">${w.wk}</div>`;
+    box.appendChild(wk);
+  });
+}
+
+function renderVerticals(){
+  const max=Math.max(...VERTICALS.map(v=>v.env))||1;
+  const bars=$('#vert-bars'); bars.innerHTML='';
+  VERTICALS.forEach(v=>{
+    const w=v.env/max*100;
+    const row=el('div','hb');
+    row.innerHTML=`<div class="name">${v.name}</div><div class="track"><div class="fill" style="width:${w}%"></div><div class="val${w>18?' in':''}">${v.env}</div></div>`;
+    bars.appendChild(row);
+  });
+  const tb=$('#vert-table tbody'); tb.innerHTML='';
+  VERTICALS.forEach(v=>{
+    const tr=el('tr');
+    const col = v.tasa>=45?'var(--good)':v.tasa>=25?'var(--warn)':v.env<5?'var(--muted)':'var(--bad)';
+    tr.innerHTML=`<td>${v.name}</td><td class="num">${v.env}</td><td class="num">${v.resp}</td><td class="num" style="color:${col};font-weight:500">${v.tasa}%</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+function renderVendors(){
+  const tb=$('#vendor-table tbody'); tb.innerHTML='';
+  VENDORS.forEach(v=>{
+    const tr=el('tr');
+    tr.innerHTML=`<td>${v.name}</td><td class="num">${v.env}</td><td class="num">${v.resp}</td>
+      <td><div style="display:flex;align-items:center;gap:10px"><div class="minibar" style="flex:1"><i style="width:${v.tasa}%"></i></div><span class="mono" style="font-size:12px;color:var(--muted)">${v.tasa}%</span></div></td>
+      <td class="num">${v.fu}</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+function renderPipeline(){
+  const kpi=[
+    {k:'Hilos en seguimiento', v:FOLLOWUP.total, d:'total registrados'},
+    {k:'Con respuesta', v:FOLLOWUP.con_reply, d:'al menos un reply'},
+    {k:'Primer follow-up', v:FOLLOWUP.follow1, d:'enviados'},
+    {k:'Segundo follow-up', v:FOLLOWUP.follow2, d:'enviados', tag:{t:'0',c:'o'}}
+  ];
+  const box=$('#fu-kpi'); box.innerHTML='';
+  kpi.forEach(c=>{const n=el('div','kpi');
+    n.innerHTML=(c.tag?`<span class="tag ${c.tag.c}">${c.tag.t}</span>`:'')+`<div class="k">${c.k}</div><div class="v">${c.v}</div><div class="d">${c.d}</div>`;
+    box.appendChild(n);});
+  const tot=FOLLOWUP.states.reduce((a,b)=>a+b.n,0);
+  $('#fu-total').textContent=`${tot} hilos`;
+  const seg=$('#fu-seg'); seg.innerHTML='';
+  FOLLOWUP.states.forEach(s=>{const d=el('div','s');d.style.background=s.c;d.style.width=(s.n/tot*100)+'%';d.textContent=s.n>2?s.n:'';seg.appendChild(d);});
+  const lg=$('#fu-legend'); lg.innerHTML='';
+  FOLLOWUP.states.forEach(s=>{const r=el('div','r');r.innerHTML=`<i style="background:${s.c}"></i>${s.s}<span class="c">${s.n}</span>`;lg.appendChild(r);});
+  $('#fu-note').innerHTML=`<b>Ojo:</b> 25 hilos se cerraron como <b>"ya era cliente"</b>, señal de que el radar sigue proponiendo cuentas existentes. Y el segundo follow-up no se está enviando (0): el automático está en revisión. <span class="pill-src">Fuente: outreach_followups</span>`;
+}
+
+function renderTriki(){
+  const kpi=[
+    {k:'Restaurantes en base', v:gk(TRIKI.detectados), d:'con ficha en el radar'},
+    {k:'Crisis detectadas', v:gk(TRIKI.crisis), d:'eventos de reputación'},
+    {k:'Outreach enviado', v:TRIKI.outreach, d:'restaurantes contactados', cls:'accent'},
+    {k:'Cobertura', v:pct(TRIKI.outreach,TRIKI.detectados)+'%', d:'contactados / en base', tag:{t:'early',c:'o'}}
+  ];
+  const box=$('#triki-kpi'); box.innerHTML='';
+  kpi.forEach(c=>{const n=el('div','kpi'+(c.cls?' '+c.cls:''));
+    n.innerHTML=(c.tag?`<span class="tag ${c.tag.c}">${c.tag.t}</span>`:'')+`<div class="k">${c.k}</div><div class="v">${c.v}</div><div class="d">${c.d}</div>`;
+    box.appendChild(n);});
+  const max=Math.max(...TRIKI.ciudades.map(c=>c.n))||1;
+  const cb=$('#triki-cities'); cb.innerHTML='';
+  TRIKI.ciudades.forEach(c=>{const w=c.n/max*100;const row=el('div','hb');
+    row.innerHTML=`<div class="name">${c.c}</div><div class="track"><div class="fill" style="width:${w}%"></div><div class="val${w>20?' in':''}">${c.n}</div></div>`;
+    cb.appendChild(row);});
+  $('#triki-insight').className='card';
+  $('#triki-insight').innerHTML=`<div class="ch"><h3>Qué mirar</h3></div>
+    <div class="insight"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h18M12 3v18"/></svg>
+    <div><b>${gk(TRIKI.detectados)} restaurantes</b> en la base y <b>${gk(TRIKI.crisis)} crisis</b> detectadas; solo <b>${TRIKI.outreach} contactados</b>. El pipeline de reseñas está en fase inicial: el techo de captación es enorme frente al outreach actual.</div></div>
+    <div class="note">Pipeline separado del radar de eliminación (fuentes y producto distintos). <span class="pill-src">Fuente: tablas restaurantes</span></div>`;
+}
+
+function renderHistorial(){
+  const map={outreach_enviado:['env','Outreach'],outreach_replied:['rep','Respuesta'],followup_enviado:['fu','Follow-up'],
+    lead_zoho_creado:['zoho','Lead Zoho'],outreach_bounced:['bnc','Rebote'],brief_enviado:['disc','Brief'],descartado_premisa:['disc','Descartado']};
+  const box=$('#tl'); box.innerHTML='';
+  HISTORIAL.forEach(h=>{
+    const m=map[h.a]||['disc',h.a];
+    const it=el('div','it');
+    const emp = h.e && h.e!=='(global)' ? h.e : '<small>lote global</small>';
+    const who = h.v ? ` <small>· ${h.v}</small>` : '';
+    it.innerHTML=`<div class="dt">${h.dt}</div><div><span class="badge ${m[0]}">${m[1]}</span></div><div class="co">${emp}${who}</div>`;
+    box.appendChild(it);
+  });
+}
+
+/* nav */
+$('#nav').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  $$('#nav button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  $$('.view').forEach(v=>v.classList.remove('on'));
+  $('#v-'+b.dataset.v).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+renderMeta(); renderKPIs(); renderFunnel(); renderInsight(); renderWeekly();
+renderVerticals(); renderVendors(); renderPipeline(); renderTriki(); renderHistorial();
+</script>
+</body>
+</html>
