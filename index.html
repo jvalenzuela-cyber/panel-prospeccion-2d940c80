@@ -277,11 +277,11 @@
    + tablas de restaurantes + Zoho CRM.  No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-07-07 17:05', range:'20 may - 7 jul 2026', source:'radar.db + historial.csv + Zoho CRM', dias:49};
+const META = {updated:'2026-07-08 13:03', range:'20 may - 8 jul 2026', source:'radar.db + historial.csv + Zoho CRM', dias:50};
 /*END:META*/
 
 /*SYNC:KPIS*/
-const KPIS = {detectados:173, enviados:95, respuestas:32, tasa_resp:34, followups:35, follow1:35, follow2:0, demos:0, leads_zoho:37, bounces:3};
+const KPIS = {detectados:173, enviados:95, respuestas:32, tasa_resp:34, followups:35, follow1:35, follow2:0, demos:0, leads_zoho:37, bounces:4};
 /*END:KPIS*/
 
 /*SYNC:FUNNEL*/
@@ -335,9 +335,9 @@ const FOLLOWUP = {
   total:80, follow1:35, follow2:0, con_reply:31,
   states:[
     {s:'En pausa (esperando)', k:'paused', n:32, c:'#61708a'},
-    {s:'Cerrado: ya era cliente', k:'cancelled_now_client', n:25, c:'#1C7BBE'},
-    {s:'Pendiente 1er toque', k:'pending', n:18, c:'#e0952c'},
-    {s:'Rebotado', k:'bounced', n:3, c:'#e2564a'},
+    {s:'Cerrado: ya era cliente', k:'cancelled_now_client', n:28, c:'#1C7BBE'},
+    {s:'Pendiente 1er toque', k:'pending', n:14, c:'#e0952c'},
+    {s:'Rebotado', k:'bounced', n:4, c:'#e2564a'},
     {s:'Respondido', k:'replied', n:2, c:'#07D4A1'}
   ]
 };
@@ -345,13 +345,21 @@ const FOLLOWUP = {
 
 /*SYNC:TRIKI*/
 const TRIKI = {
-  detectados:2838, crisis:2984, outreach:131,
-  ciudades:[{c:'Madrid', n:17},{c:'Bilbao', n:16},{c:'Pamplona', n:15},{c:'Sevilla', n:12},{c:'Valencia', n:12},{c:'Barcelona', n:11},{c:'Cádiz', n:11},{c:'Málaga', n:7}]
+  detectados:2838, crisis:2984, outreach:137,
+  ciudades:[{c:'Madrid', n:18},{c:'Bilbao', n:16},{c:'Pamplona', n:16},{c:'Valencia', n:13},{c:'Barcelona', n:12},{c:'Sevilla', n:12},{c:'Cádiz', n:11},{c:'Málaga', n:7}]
 };
 /*END:TRIKI*/
 
 /*SYNC:HISTORIAL*/
 const HISTORIAL = [
+  {dt:'08/07 09:30', a:'outreach_bounced', e:'Aflac Japan', v:'Alejandro Cabezas', g:0},
+  {dt:'08/07 08:22', a:'descartado_premisa', e:'Hipra', v:'', g:0},
+  {dt:'08/07 08:22', a:'descartado_premisa', e:'Banco Azteca', v:'', g:0},
+  {dt:'08/07 08:22', a:'descartado_premisa', e:'UEFA', v:'', g:0},
+  {dt:'08/07 08:22', a:'descartado_premisa', e:'Banco de Crédito del Perú (BCP)', v:'', g:0},
+  {dt:'08/07 08:22', a:'brief_enviado', e:'(global)', v:'', g:0},
+  {dt:'08/07 08:21', a:'descartado_premisa', e:'Quirón Salud', v:'', g:0},
+  {dt:'08/07 08:21', a:'descartado_premisa', e:'Primus Capital', v:'', g:0},
   {dt:'07/07 08:25', a:'outreach_enviado', e:'Carnival Cruise Line', v:'Juan Carlos Moreno', g:9},
   {dt:'07/07 08:25', a:'brief_enviado', e:'(global)', v:'', g:0},
   {dt:'07/07 08:24', a:'lead_zoho_creado', e:'Carnival Cruise Line', v:'Juan Carlos Moreno', g:9},
@@ -388,15 +396,7 @@ const HISTORIAL = [
   {dt:'02/07 08:25', a:'descartado_premisa', e:'Nintendo', v:'', g:0},
   {dt:'02/07 08:25', a:'lead_zoho_creado', e:'Temu', v:'Alejandro Cabezas', g:10},
   {dt:'02/07 08:25', a:'outreach_enviado', e:'Temu', v:'Alejandro Cabezas', g:10},
-  {dt:'02/07 08:24', a:'descartado_premisa', e:'Vodafone España / Lowi', v:'', g:0},
-  {dt:'01/07 08:30', a:'brief_enviado', e:'(global)', v:'', g:0},
-  {dt:'01/07 08:29', a:'outreach_enviado', e:'Rolser', v:'David Ramos', g:10},
-  {dt:'01/07 08:28', a:'outreach_enviado', e:'Rolser', v:'David Ramos', g:10},
-  {dt:'01/07 08:27', a:'outreach_enviado', e:'Aflac Japan', v:'Alejandro Cabezas', g:10},
-  {dt:'01/07 08:27', a:'lead_zoho_creado', e:'Rolser', v:'David Ramos', g:10},
-  {dt:'01/07 08:25', a:'lead_zoho_creado', e:'Aflac Japan', v:'Alejandro Cabezas', g:10},
-  {dt:'01/07 08:25', a:'outreach_enviado', e:'Aflac Japan', v:'Alejandro Cabezas', g:10},
-  {dt:'01/07 08:24', a:'descartado_premisa', e:'Temu', v:'', g:0}
+  {dt:'02/07 08:24', a:'descartado_premisa', e:'Vodafone España / Lowi', v:'', g:0}
 ];
 /*END:HISTORIAL*/
 
