@@ -271,6 +271,17 @@
       </div>
       <div class="card" id="triki-insight"></div>
     </div>
+    <div class="grid g-2-1" style="margin-top:16px">
+      <div class="card">
+        <div class="ch"><h3>Del contacto a la demo</h3><span class="hint">deal = pidió demo</span></div>
+        <div class="funnel" id="triki-funnel"></div>
+        <div class="note" id="triki-funnel-note"></div>
+      </div>
+      <div class="card">
+        <div class="ch"><h3>Restaurantes que pidieron demo</h3><span class="hint">deals · campo Demo_Tricki</span></div>
+        <div class="chips" id="triki-demolist"></div>
+      </div>
+    </div>
   </section>
 
   <!-- ============ RECUPERACIÓN ============ -->
@@ -307,7 +318,7 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-07-08 14:15', range:'20 may - 8 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:50};
+const META = {updated:'2026-07-08 15:31', range:'20 may - 8 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:50};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
@@ -345,7 +356,7 @@ const FUNNEL = [
   {k:'Detectadas', v:183},
   {k:'Contactadas', v:39},
   {k:'Respondieron', v:2},
-  {k:'Pidió demo', v:0},
+  {k:'Pidió demo (deal)', v:0},
   {k:'Demo agendada', v:0}
 ];
 /*END:FUNNEL*/
@@ -402,8 +413,9 @@ const FOLLOWUP = {
 
 /*SYNC:TRIKI*/
 const TRIKI = {
-  base:2838, contactables:201, crisis:596, outreach:137,
-  ciudades:[{c:'Madrid', n:18},{c:'Bilbao', n:16},{c:'Pamplona', n:16},{c:'Valencia', n:13},{c:'Barcelona', n:12},{c:'Sevilla', n:12},{c:'Cádiz', n:11},{c:'Málaga', n:7}]
+  base:2838, contactables:201, crisis:596, outreach:137, demos:1,
+  ciudades:[{c:'Madrid', n:18},{c:'Bilbao', n:16},{c:'Pamplona', n:16},{c:'Valencia', n:13},{c:'Barcelona', n:12},{c:'Sevilla', n:12},{c:'Cádiz', n:11},{c:'Málaga', n:7}],
+  demo_deals:[{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Quote Created', fecha:'2026-07-07'}]
 };
 /*END:TRIKI*/
 
@@ -567,8 +579,8 @@ function renderTriki(){
   const k=[
     {k:'Restaurantes en base', v:gk(TRIKI.base), d:'detectados (con y sin email)'},
     {k:'Contactables (con email)', v:gk(TRIKI.contactables), d:pct(TRIKI.contactables,TRIKI.base)+'% de la base', cls:'accent'},
-    {k:'Con crisis', v:gk(TRIKI.crisis), d:'restaurantes con reseñas negativas'},
-    {k:'Outreach enviado', v:TRIKI.outreach, d:pct(TRIKI.outreach,TRIKI.contactables)+'% de los contactables', tag:{t:pct(TRIKI.outreach,TRIKI.contactables)+'%',c:'g'}}
+    {k:'Outreach enviado', v:TRIKI.outreach, d:pct(TRIKI.outreach,TRIKI.contactables)+'% de los contactables', tag:{t:pct(TRIKI.outreach,TRIKI.contactables)+'%',c:'g'}},
+    {k:'Demos (deals)', v:TRIKI.demos, d:'restaurantes que pidieron demo', tag:{t:TRIKI.demos>0?'✓':'0',c:TRIKI.demos>0?'g':'r'}}
   ];
   fillKpi('#triki-kpi',k);
   const max=Math.max(...TRIKI.ciudades.map(c=>c.n))||1;
@@ -577,8 +589,20 @@ function renderTriki(){
     cb.appendChild(el('div','hb',`<div class="name">${c.c}</div><div class="track"><div class="fill" style="width:${w}%"></div><div class="val${w>20?' in':''}">${c.n}</div></div>`));});
   $('#triki-insight').innerHTML=`<div class="ch"><h3>Qué mirar</h3></div>
     <div class="insight"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h18M12 3v18"/></svg>
-    <div><b>${gk(TRIKI.base)} restaurantes</b> en base, pero solo <b>${gk(TRIKI.contactables)} tienen email</b> (${pct(TRIKI.contactables,TRIKI.base)}%). Sobre los contactables ya se ha llegado al <b>${pct(TRIKI.outreach,TRIKI.contactables)}%</b>. El cuello real no es detectar restaurantes, es conseguir el email de los <b>${gk(TRIKI.base-TRIKI.contactables)}</b> que no lo tienen.</div></div>
-    <div class="note">Producto de reseñas, separado del radar de eliminación. <span class="pill-src">Fuente: tablas restaurantes</span></div>`;
+    <div><b>${gk(TRIKI.base)} restaurantes</b> en base y <b>${gk(TRIKI.crisis)} con crisis</b>, pero solo <b>${gk(TRIKI.contactables)} tienen email</b> (${pct(TRIKI.contactables,TRIKI.base)}%). El cuello real no es detectar, es conseguir el email de los <b>${gk(TRIKI.base-TRIKI.contactables)}</b> que no lo tienen.</div></div>
+    <div class="note">Producto de reseñas, separado del radar de eliminación. <span class="pill-src">Fuente: tablas restaurantes + Zoho Deals</span></div>`;
+  // funnel triki: contactables -> contactados -> pidió demo (deal)
+  const tf=[{k:'Contactables',v:TRIKI.contactables},{k:'Contactados',v:TRIKI.outreach},{k:'Pidió demo (deal)',v:TRIKI.demos}];
+  const tmax=Math.max(...tf.map(f=>f.v))||1;
+  const tfb=$('#triki-funnel'); tfb.innerHTML='';
+  tf.forEach((f,i)=>{const w=Math.max(f.v/tmax*100,f.v>0?7:0);
+    const cv=i>0?`${pct(f.v,tf[i-1].v)}% del previo`:'';
+    const bg=i===0?';background:linear-gradient(90deg,#141d3b,#2b3560)':i===tf.length-1?';background:linear-gradient(90deg,#c86a1e,#d9822b)':'';
+    tfb.appendChild(el('div','fn-row',`<div class="lbl">${f.k}</div><div class="fn-bar" style="width:${w}%${bg}">${f.v}</div><div class="cv">${cv}</div>`));});
+  $('#triki-funnel-note').innerHTML=`Las respuestas del outreach de restaurantes no se registran hoy (a diferencia de B2B, auditado por Gmail); <b>el deal es la primera señal medible</b> = pidió demo. <span class="pill-src">Fuente: Zoho Deals · Lead_Source Campañas Outbound + Demo_Tricki</span>`;
+  const dl=$('#triki-demolist'); dl.innerHTML='';
+  if(!TRIKI.demo_deals.length) dl.innerHTML='<div style="font-size:12.5px;color:var(--muted)">Sin deals de demo todavía en la ventana de prospección.</div>';
+  else TRIKI.demo_deals.forEach(d=>dl.appendChild(el('div','chip',`${d.name}<small>${d.stage} · ${d.fecha}</small>`)));
 }
 
 function renderRecup(){
