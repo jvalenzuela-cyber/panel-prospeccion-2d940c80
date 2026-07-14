@@ -216,6 +216,13 @@
     <div class="sec">Por producto <span class="ln"></span></div>
     <div class="grid g5" id="pcards"></div>
     <div class="note" id="resumen-note"></div>
+
+    <div class="sec">Coste de prospección · API de Claude <span class="ln"></span></div>
+    <div class="card">
+      <div class="ch"><h3>Coste por lead y por demo, por mes</h3><span class="hint" id="costes-upd"></span></div>
+      <table id="costes-table"><thead><tr><th>Mes</th><th class="num">Coste API</th><th class="num">Leads</th><th class="num">Demos</th><th class="num">$/lead</th><th class="num">$/demo</th></tr></thead><tbody></tbody></table>
+      <div class="note" id="costes-note"></div>
+    </div>
   </section>
 
   <!-- ============ KARCHER B2B ============ -->
@@ -318,18 +325,18 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-07-14 09:47', range:'20 may - 13 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:55};
+const META = {updated:'2026-07-14 17:37', range:'20 may - 13 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:55};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
-const PROSPECT = {total:202, activos:2, rango:'20 may - 13 jul 2026', mes_label:'jul 2026', mes_total:60};
+const PROSPECT = {total:208, activos:2, rango:'20 may - 14 jul 2026', mes_label:'jul 2026', mes_total:66};
 /*END:PROSPECT*/
 
 /*SYNC:PRODUCTS*/
 const PRODUCTS = [
   {key:'b2b', name:'Karcher B2B', desc:'Empresas · eliminación de contenido', color:'#1C7BBE', total:36, mes:10, estado:'Activo'},
   {key:'b2c', name:'Karcher B2C', desc:'Personas · huella digital', color:'#6fb2dd', total:0, mes:0, estado:'En construcción'},
-  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:147, mes:50, estado:'Activo'},
+  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:153, mes:56, estado:'Activo'},
   {key:'bajas', name:'Bajas', desc:'Re-prospección de clientes de baja', color:'#07D4A1', total:5, mes:0, estado:'Puntual'},
   {key:'perdidos', name:'Deals perdidos', desc:'Re-prospección de oportunidades perdidas', color:'#7c6cf0', total:14, mes:0, estado:'Puntual'}
 ];
@@ -339,12 +346,23 @@ const PRODUCTS = [
 const MONTHLY = [
   {label:'may 26', total:13, vals:{b2b:13, b2c:0, triki:0, bajas:0, perdidos:0}},
   {label:'jun 26', total:129, vals:{b2b:13, b2c:0, triki:97, bajas:5, perdidos:14}},
-  {label:'jul 26', total:60, vals:{b2b:10, b2c:0, triki:50, bajas:0, perdidos:0}}
+  {label:'jul 26', total:66, vals:{b2b:10, b2c:0, triki:56, bajas:0, perdidos:0}}
 ];
 /*END:MONTHLY*/
 
+/*SYNC:COSTS*/
+const COSTS = {
+  updated:'2026-07-14', note:'Coste API de prospeccion por mes (excluye Opus=experimentos). Desposicionamiento apagado el 15-jun-2026; jul en adelante es limpio.',
+  months:[
+    {label:'may 26', cost:16.45, leads:13, demos:0, cpl:1.27, cpd:null},
+    {label:'jun 26', cost:65.11, leads:110, demos:0, cpl:0.59, cpd:null},
+    {label:'jul 26', cost:80.34, leads:53, demos:2, cpl:1.52, cpd:40.17}
+  ]
+};
+/*END:COSTS*/
+
 /*SYNC:RECUP*/
-const RECUP = {bajas:[{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Mundimoto/AJ Moto', mes:'2026-06'},{empresa:'Vestiaire Collective', mes:'2026-06'},{empresa:'UniverMilenium', mes:'2026-06'},{empresa:'Winpot/Mazal TOV', mes:'2026-06'}], perdidos:[{empresa:'Mabel Capital', mes:'2026-06'},{empresa:'Wallbox', mes:'2026-06'},{empresa:'Dellafuente', mes:'2026-06'},{empresa:'Frucove', mes:'2026-06'},{empresa:'Ezcurra Cerrajeros', mes:'2026-06'},{empresa:'Roman y Asociados SA', mes:'2026-06'},{empresa:'Red Farma', mes:'2026-06'},{empresa:'COSMICA', mes:'2026-06'},{empresa:'Studio Cappello Agency', mes:'2026-06'},{empresa:'Panamericana de Patentes y Marcas', mes:'2026-06'},{empresa:'Gipsy Kings', mes:'2026-06'},{empresa:'RMA Propiedad Industrial', mes:'2026-06'},{empresa:'WEBIMPACTO', mes:'2026-06'},{empresa:'Lerroux Patentes y Marcas', mes:'2026-06'}]};
+const RECUP = {bajas:[{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Mundimoto/AJ Moto', mes:'2026-06'},{empresa:'Vestiaire Collective', mes:'2026-06'},{empresa:'UniverMilenium', mes:'2026-06'},{empresa:'Winpot/Mazal TOV', mes:'2026-06'}], perdidos:[{empresa:'Mabel Capital', mes:'2026-06'},{empresa:'Wallbox', mes:'2026-06'},{empresa:'Dellafuente', mes:'2026-06'},{empresa:'Frucove', mes:'2026-06'},{empresa:'Ezcurra Cerrajeros', mes:'2026-06'},{empresa:'COSMICA', mes:'2026-06'},{empresa:'Studio Cappello Agency', mes:'2026-06'},{empresa:'Panamericana de Patentes y Marcas', mes:'2026-06'},{empresa:'Gipsy Kings', mes:'2026-06'},{empresa:'RMA Propiedad Industrial', mes:'2026-06'},{empresa:'WEBIMPACTO', mes:'2026-06'},{empresa:'Lerroux Patentes y Marcas', mes:'2026-06'},{empresa:'Roman y Asociados SA', mes:'2026-06'},{empresa:'Red Farma', mes:'2026-06'}]};
 /*END:RECUP*/
 
 /*SYNC:KPIS*/
@@ -412,8 +430,8 @@ const FOLLOWUP = {
 
 /*SYNC:TRIKI*/
 const TRIKI = {
-  base:2857, contactables:447, crisis:612, outreach:148, demos:2,
-  ciudades:[{c:'Madrid', n:18},{c:'Pamplona', n:18},{c:'Bilbao', n:16},{c:'Valencia', n:13},{c:'Barcelona', n:12},{c:'Sevilla', n:12},{c:'Cádiz', n:11},{c:'Santander', n:9}],
+  base:2861, contactables:451, crisis:616, outreach:154, demos:2,
+  ciudades:[{c:'Madrid', n:19},{c:'Pamplona', n:18},{c:'Bilbao', n:16},{c:'Barcelona', n:13},{c:'Sevilla', n:13},{c:'Valencia', n:13},{c:'Cádiz', n:11},{c:'Santander', n:9}],
   demo_deals:[{name:'Compañía del Trópico', stage:'In Progress', fecha:'2026-07-07'},{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Quote Created', fecha:'2026-07-07'}]
 };
 /*END:TRIKI*/
@@ -522,6 +540,16 @@ function renderResumen(){
     pc.appendChild(card);
   });
   $('#resumen-note').innerHTML=`<b>Cuenta contactada</b> = un lead de prospección creado en Zoho (una empresa, negocio o cuenta). En Karcher B2B esas cuentas equivalen a ${KPIS.empresas} empresas alcanzadas con ${KPIS.enviados} emails (varios contactos por empresa). Karcher B2C aún no tiene flujo activo. <span class="pill-src">Fuente: Zoho CRM · utm_campaign</span>`;
+}
+
+function renderCostes(){
+  const fmt=v=>v==null?'—':'$'+Number(v).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const tb=$('#costes-table tbody'); if(!tb) return; tb.innerHTML='';
+  COSTS.months.forEach(m=>tb.appendChild(el('tr',null,
+    `<td>${m.label}</td><td class="num mono">${fmt(m.cost)}</td><td class="num">${m.leads}</td>`+
+    `<td class="num">${m.demos}</td><td class="num mono">${fmt(m.cpl)}</td><td class="num mono">${fmt(m.cpd)}</td>`)));
+  $('#costes-upd').textContent=COSTS.updated?('actualizado '+COSTS.updated):'';
+  $('#costes-note').innerHTML=`${COSTS.note||''} <span class="pill-src">Fuente: Anthropic Admin API · cost_report</span>`;
 }
 
 function renderB2B(){
