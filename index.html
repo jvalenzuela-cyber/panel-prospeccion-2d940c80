@@ -318,18 +318,18 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-07-08 16:07', range:'20 may - 8 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:50};
+const META = {updated:'2026-07-14 09:47', range:'20 may - 13 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:55};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
-const PROSPECT = {total:195, activos:2, rango:'20 may - 8 jul 2026', mes_label:'jul 2026', mes_total:53};
+const PROSPECT = {total:202, activos:2, rango:'20 may - 13 jul 2026', mes_label:'jul 2026', mes_total:60};
 /*END:PROSPECT*/
 
 /*SYNC:PRODUCTS*/
 const PRODUCTS = [
   {key:'b2b', name:'Karcher B2B', desc:'Empresas · eliminación de contenido', color:'#1C7BBE', total:36, mes:10, estado:'Activo'},
   {key:'b2c', name:'Karcher B2C', desc:'Personas · huella digital', color:'#6fb2dd', total:0, mes:0, estado:'En construcción'},
-  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:140, mes:43, estado:'Activo'},
+  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:147, mes:50, estado:'Activo'},
   {key:'bajas', name:'Bajas', desc:'Re-prospección de clientes de baja', color:'#07D4A1', total:5, mes:0, estado:'Puntual'},
   {key:'perdidos', name:'Deals perdidos', desc:'Re-prospección de oportunidades perdidas', color:'#7c6cf0', total:14, mes:0, estado:'Puntual'}
 ];
@@ -339,21 +339,21 @@ const PRODUCTS = [
 const MONTHLY = [
   {label:'may 26', total:13, vals:{b2b:13, b2c:0, triki:0, bajas:0, perdidos:0}},
   {label:'jun 26', total:129, vals:{b2b:13, b2c:0, triki:97, bajas:5, perdidos:14}},
-  {label:'jul 26', total:53, vals:{b2b:10, b2c:0, triki:43, bajas:0, perdidos:0}}
+  {label:'jul 26', total:60, vals:{b2b:10, b2c:0, triki:50, bajas:0, perdidos:0}}
 ];
 /*END:MONTHLY*/
 
 /*SYNC:RECUP*/
-const RECUP = {bajas:[{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Winpot/Mazal TOV', mes:'2026-06'},{empresa:'Mundimoto/AJ Moto', mes:'2026-06'},{empresa:'Vestiaire Collective', mes:'2026-06'},{empresa:'UniverMilenium', mes:'2026-06'}], perdidos:[{empresa:'Frucove', mes:'2026-06'},{empresa:'Ezcurra Cerrajeros', mes:'2026-06'},{empresa:'Roman y Asociados SA', mes:'2026-06'},{empresa:'Red Farma', mes:'2026-06'},{empresa:'Mabel Capital', mes:'2026-06'},{empresa:'COSMICA', mes:'2026-06'},{empresa:'Studio Cappello Agency', mes:'2026-06'},{empresa:'Wallbox', mes:'2026-06'},{empresa:'Panamericana de Patentes y Marcas', mes:'2026-06'},{empresa:'Gipsy Kings', mes:'2026-06'},{empresa:'RMA Propiedad Industrial', mes:'2026-06'},{empresa:'Dellafuente', mes:'2026-06'},{empresa:'WEBIMPACTO', mes:'2026-06'},{empresa:'Lerroux Patentes y Marcas', mes:'2026-06'}]};
+const RECUP = {bajas:[{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Mundimoto/AJ Moto', mes:'2026-06'},{empresa:'Vestiaire Collective', mes:'2026-06'},{empresa:'UniverMilenium', mes:'2026-06'},{empresa:'Winpot/Mazal TOV', mes:'2026-06'}], perdidos:[{empresa:'Mabel Capital', mes:'2026-06'},{empresa:'Wallbox', mes:'2026-06'},{empresa:'Dellafuente', mes:'2026-06'},{empresa:'Frucove', mes:'2026-06'},{empresa:'Ezcurra Cerrajeros', mes:'2026-06'},{empresa:'Roman y Asociados SA', mes:'2026-06'},{empresa:'Red Farma', mes:'2026-06'},{empresa:'COSMICA', mes:'2026-06'},{empresa:'Studio Cappello Agency', mes:'2026-06'},{empresa:'Panamericana de Patentes y Marcas', mes:'2026-06'},{empresa:'Gipsy Kings', mes:'2026-06'},{empresa:'RMA Propiedad Industrial', mes:'2026-06'},{empresa:'WEBIMPACTO', mes:'2026-06'},{empresa:'Lerroux Patentes y Marcas', mes:'2026-06'}]};
 /*END:RECUP*/
 
 /*SYNC:KPIS*/
-const KPIS = {detectadas:183, enviados:95, empresas:39, respuestas:2, tasa_resp:5, followups:35, follow1:35, follow2:0, demos:0, leads_zoho:37, bounces:4};
+const KPIS = {detectadas:188, enviados:95, empresas:39, respuestas:2, tasa_resp:5, followups:35, follow1:35, follow2:0, demos:0, leads_zoho:37, bounces:4};
 /*END:KPIS*/
 
 /*SYNC:FUNNEL*/
 const FUNNEL = [
-  {k:'Detectadas', v:183},
+  {k:'Detectadas', v:188},
   {k:'Contactadas', v:39},
   {k:'Respondieron', v:2},
   {k:'Pidió demo (deal)', v:0},
@@ -403,8 +403,7 @@ const FOLLOWUP = {
   total:80, follow1:35, follow2:0, con_reply:2,
   states:[
     {s:'En pausa (esperando)', k:'paused', n:32, c:'#61708a'},
-    {s:'Cerrado: ya era cliente', k:'cancelled_now_client', n:28, c:'#1C7BBE'},
-    {s:'Pendiente 1er toque', k:'pending', n:14, c:'#e0952c'},
+    {s:'Cerrado: ya era cliente', k:'cancelled_now_client', n:42, c:'#1C7BBE'},
     {s:'Rebotado', k:'bounced', n:4, c:'#e2564a'},
     {s:'Con actividad en hilo', k:'replied', n:2, c:'#07D4A1'}
   ]
@@ -413,14 +412,23 @@ const FOLLOWUP = {
 
 /*SYNC:TRIKI*/
 const TRIKI = {
-  base:2838, contactables:201, crisis:596, outreach:137, demos:2,
-  ciudades:[{c:'Madrid', n:18},{c:'Bilbao', n:16},{c:'Pamplona', n:16},{c:'Valencia', n:13},{c:'Barcelona', n:12},{c:'Sevilla', n:12},{c:'Cádiz', n:11},{c:'Málaga', n:7}],
+  base:2857, contactables:447, crisis:612, outreach:148, demos:2,
+  ciudades:[{c:'Madrid', n:18},{c:'Pamplona', n:18},{c:'Bilbao', n:16},{c:'Valencia', n:13},{c:'Barcelona', n:12},{c:'Sevilla', n:12},{c:'Cádiz', n:11},{c:'Santander', n:9}],
   demo_deals:[{name:'Compañía del Trópico', stage:'In Progress', fecha:'2026-07-07'},{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Quote Created', fecha:'2026-07-07'}]
 };
 /*END:TRIKI*/
 
 /*SYNC:HISTORIAL*/
 const HISTORIAL = [
+  {dt:'13/07 08:18', a:'descartado_premisa', e:'Primus Capital', v:'', g:0},
+  {dt:'13/07 08:18', a:'descartado_premisa', e:'Gowex', v:'', g:0},
+  {dt:'13/07 08:18', a:'brief_enviado', e:'(global)', v:'', g:0},
+  {dt:'09/07 08:21', a:'descartado_premisa', e:'Plus Ultra Seguros', v:'', g:0},
+  {dt:'09/07 08:21', a:'descartado_premisa', e:'IKEA España', v:'', g:0},
+  {dt:'09/07 08:21', a:'descartado_premisa', e:'Primus Capital', v:'', g:0},
+  {dt:'09/07 08:21', a:'descartado_premisa', e:'Vietcombank', v:'', g:0},
+  {dt:'09/07 08:21', a:'descartado_premisa', e:'Starbucks', v:'', g:0},
+  {dt:'09/07 08:21', a:'brief_enviado', e:'(global)', v:'', g:0},
   {dt:'08/07 09:30', a:'outreach_bounced', e:'Aflac Japan', v:'Alejandro Cabezas', g:0},
   {dt:'08/07 08:22', a:'descartado_premisa', e:'Hipra', v:'', g:0},
   {dt:'08/07 08:22', a:'descartado_premisa', e:'Banco Azteca', v:'', g:0},
@@ -456,16 +464,7 @@ const HISTORIAL = [
   {dt:'03/07 08:25', a:'lead_zoho_creado', e:'Change Healthcare', v:'David Ramos', g:10},
   {dt:'03/07 08:25', a:'outreach_enviado', e:'Change Healthcare', v:'David Ramos', g:10},
   {dt:'02/07 08:30', a:'brief_enviado', e:'(global)', v:'', g:0},
-  {dt:'02/07 08:29', a:'lead_zoho_creado', e:'Basic-Fit', v:'Alejandro Cabezas', g:9},
-  {dt:'02/07 08:29', a:'outreach_enviado', e:'Basic-Fit', v:'Alejandro Cabezas', g:9},
-  {dt:'02/07 08:28', a:'outreach_enviado', e:'Antel', v:'Juan Carlos Moreno', g:9},
-  {dt:'02/07 08:27', a:'lead_zoho_creado', e:'Antel', v:'Juan Carlos Moreno', g:9},
-  {dt:'02/07 08:27', a:'outreach_enviado', e:'Antel', v:'Juan Carlos Moreno', g:9},
-  {dt:'02/07 08:26', a:'outreach_enviado', e:'Temu', v:'Alejandro Cabezas', g:10},
-  {dt:'02/07 08:25', a:'descartado_premisa', e:'Nintendo', v:'', g:0},
-  {dt:'02/07 08:25', a:'lead_zoho_creado', e:'Temu', v:'Alejandro Cabezas', g:10},
-  {dt:'02/07 08:25', a:'outreach_enviado', e:'Temu', v:'Alejandro Cabezas', g:10},
-  {dt:'02/07 08:24', a:'descartado_premisa', e:'Vodafone España / Lowi', v:'', g:0}
+  {dt:'02/07 08:29', a:'lead_zoho_creado', e:'Basic-Fit', v:'Alejandro Cabezas', g:9}
 ];
 /*END:HISTORIAL*/
 
