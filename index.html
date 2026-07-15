@@ -325,16 +325,16 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-07-14 17:40', range:'20 may - 13 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:55};
+const META = {updated:'2026-07-15 09:00', range:'20 may - 15 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:57};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
-const PROSPECT = {total:208, activos:2, rango:'20 may - 14 jul 2026', mes_label:'jul 2026', mes_total:66};
+const PROSPECT = {total:209, activos:2, rango:'20 may - 15 jul 2026', mes_label:'jul 2026', mes_total:67};
 /*END:PROSPECT*/
 
 /*SYNC:PRODUCTS*/
 const PRODUCTS = [
-  {key:'b2b', name:'Karcher B2B', desc:'Empresas · eliminación de contenido', color:'#1C7BBE', total:36, mes:10, estado:'Activo'},
+  {key:'b2b', name:'Karcher B2B', desc:'Empresas · eliminación de contenido', color:'#1C7BBE', total:37, mes:11, estado:'Activo'},
   {key:'b2c', name:'Karcher B2C', desc:'Personas · huella digital', color:'#6fb2dd', total:0, mes:0, estado:'En construcción'},
   {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:153, mes:56, estado:'Activo'},
   {key:'bajas', name:'Bajas', desc:'Re-prospección de clientes de baja', color:'#07D4A1', total:5, mes:0, estado:'Puntual'},
@@ -346,7 +346,7 @@ const PRODUCTS = [
 const MONTHLY = [
   {label:'may 26', total:13, vals:{b2b:13, b2c:0, triki:0, bajas:0, perdidos:0}},
   {label:'jun 26', total:129, vals:{b2b:13, b2c:0, triki:97, bajas:5, perdidos:14}},
-  {label:'jul 26', total:66, vals:{b2b:10, b2c:0, triki:56, bajas:0, perdidos:0}}
+  {label:'jul 26', total:67, vals:{b2b:11, b2c:0, triki:56, bajas:0, perdidos:0}}
 ];
 /*END:MONTHLY*/
 
@@ -366,13 +366,13 @@ const RECUP = {bajas:[{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Mundi
 /*END:RECUP*/
 
 /*SYNC:KPIS*/
-const KPIS = {detectadas:188, enviados:95, empresas:39, respuestas:2, tasa_resp:5, followups:35, follow1:35, follow2:0, demos:0, leads_zoho:37, bounces:4};
+const KPIS = {detectadas:191, enviados:97, empresas:40, respuestas:2, tasa_resp:5, followups:35, follow1:35, follow2:0, demos:0, leads_zoho:38, bounces:4};
 /*END:KPIS*/
 
 /*SYNC:FUNNEL*/
 const FUNNEL = [
-  {k:'Detectadas', v:188},
-  {k:'Contactadas', v:39},
+  {k:'Detectadas', v:191},
+  {k:'Contactadas', v:40},
   {k:'Respondieron', v:2},
   {k:'Pidió demo (deal)', v:0},
   {k:'Demo agendada', v:0}
@@ -390,6 +390,7 @@ const VERTICALS = [
   {name:'Automoción', env:3, resp:0, tasa:0},
   {name:'Gaming', env:2, resp:0, tasa:0},
   {name:'Hostelería', env:2, resp:0, tasa:0},
+  {name:'Banca', env:2, resp:0, tasa:0},
   {name:'Medios', env:1, resp:0, tasa:0},
   {name:'Deporte', env:1, resp:0, tasa:0}
 ];
@@ -399,7 +400,7 @@ const VERTICALS = [
 const VENDORS = [
   {name:'David Ramos', env:46, resp:2, tasa:4, fu:37},
   {name:'Alejandro Cabezas', env:34, resp:0, tasa:0, fu:32},
-  {name:'Juan Carlos Moreno', env:15, resp:0, tasa:0, fu:11}
+  {name:'Juan Carlos Moreno', env:17, resp:0, tasa:0, fu:13}
 ];
 /*END:VENDORS*/
 
@@ -412,16 +413,18 @@ const WEEKLY = [
   {wk:'15/06', env:7, resp:0},
   {wk:'22/06', env:3, resp:0},
   {wk:'29/06', env:19, resp:0},
-  {wk:'06/07', env:7, resp:0}
+  {wk:'06/07', env:7, resp:0},
+  {wk:'13/07', env:2, resp:0}
 ];
 /*END:WEEKLY*/
 
 /*SYNC:FOLLOWUP*/
 const FOLLOWUP = {
-  total:80, follow1:35, follow2:0, con_reply:2,
+  total:82, follow1:35, follow2:0, con_reply:2,
   states:[
     {s:'En pausa (esperando)', k:'paused', n:32, c:'#61708a'},
     {s:'Cerrado: ya era cliente', k:'cancelled_now_client', n:42, c:'#1C7BBE'},
+    {s:'Pendiente 1er toque', k:'pending', n:2, c:'#e0952c'},
     {s:'Rebotado', k:'bounced', n:4, c:'#e2564a'},
     {s:'Con actividad en hilo', k:'replied', n:2, c:'#07D4A1'}
   ]
@@ -438,6 +441,11 @@ const TRIKI = {
 
 /*SYNC:HISTORIAL*/
 const HISTORIAL = [
+  {dt:'15/07 08:48', a:'brief_enviado', e:'(global)', v:'', g:0},
+  {dt:'15/07 08:46', a:'outreach_enviado', e:'Primus Capital', v:'Juan Carlos Moreno', g:8},
+  {dt:'15/07 08:44', a:'descartado_premisa', e:'Gowex', v:'', g:0},
+  {dt:'15/07 08:44', a:'lead_zoho_creado', e:'Primus Capital', v:'Juan Carlos Moreno', g:8},
+  {dt:'15/07 08:44', a:'outreach_enviado', e:'Primus Capital', v:'Juan Carlos Moreno', g:8},
   {dt:'13/07 08:18', a:'descartado_premisa', e:'Primus Capital', v:'', g:0},
   {dt:'13/07 08:18', a:'descartado_premisa', e:'Gowex', v:'', g:0},
   {dt:'13/07 08:18', a:'brief_enviado', e:'(global)', v:'', g:0},
@@ -477,12 +485,7 @@ const HISTORIAL = [
   {dt:'03/07 08:27', a:'outreach_enviado', e:'Change Healthcare', v:'David Ramos', g:10},
   {dt:'03/07 08:27', a:'brief_enviado', e:'(global)', v:'', g:0},
   {dt:'03/07 08:25', a:'descartado_premisa', e:'Grupo Gloria', v:'', g:0},
-  {dt:'03/07 08:25', a:'descartado_premisa', e:'Nintendo', v:'', g:0},
-  {dt:'03/07 08:25', a:'descartado_premisa', e:'CeX España', v:'', g:0},
-  {dt:'03/07 08:25', a:'lead_zoho_creado', e:'Change Healthcare', v:'David Ramos', g:10},
-  {dt:'03/07 08:25', a:'outreach_enviado', e:'Change Healthcare', v:'David Ramos', g:10},
-  {dt:'02/07 08:30', a:'brief_enviado', e:'(global)', v:'', g:0},
-  {dt:'02/07 08:29', a:'lead_zoho_creado', e:'Basic-Fit', v:'Alejandro Cabezas', g:9}
+  {dt:'03/07 08:25', a:'descartado_premisa', e:'Nintendo', v:'', g:0}
 ];
 /*END:HISTORIAL*/
 
