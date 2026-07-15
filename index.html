@@ -243,10 +243,10 @@
       <div class="note" id="pipe-note"></div>
     </div>
 
-    <div class="sec">Coste de prospección · API de Claude <span class="ln"></span></div>
+    <div class="sec">Coste de prospección · Claude + Google Places <span class="ln"></span></div>
     <div class="card">
       <div class="ch"><h3>Coste por lead y por demo, por mes</h3><span class="hint" id="costes-upd"></span></div>
-      <table id="costes-table"><thead><tr><th>Mes</th><th class="num">Coste API</th><th class="num">Leads</th><th class="num">Demos</th><th class="num">$/lead</th><th class="num">$/demo</th></tr></thead><tbody></tbody></table>
+      <table id="costes-table"><thead><tr><th>Mes</th><th class="num">Coste total</th><th class="num">Leads</th><th class="num">Demos</th><th class="num">€/lead</th><th class="num">€/demo</th></tr></thead><tbody></tbody></table>
       <div class="note" id="costes-note"></div>
     </div>
   </section>
@@ -351,7 +351,7 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-07-15 09:53', range:'20 may - 15 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:57};
+const META = {updated:'2026-07-15 10:10', range:'20 may - 15 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:57};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
@@ -388,11 +388,11 @@ const PIPELINE = {
 
 /*SYNC:COSTS*/
 const COSTS = {
-  updated:'2026-07-14', note:'Coste API de prospeccion por mes (excluye Opus=experimentos). Desposicionamiento apagado el 15-jun-2026; jul en adelante es limpio.',
+  updated:'2026-07-15', note:'Coste de las APIs de prospección por mes, en euros. Claude (excluye Opus=experimentos) convertido de USD al tipo del BCE del 14-jul-2026 (1 € = 1,1405 $); Google Places API (censado de restaurantes para Triki) ya en € (Places: jun 31,16 €). Desposicionamiento apagado el 15-jun-2026.',
   months:[
-    {label:'may 26', cost:16.45, leads:13, demos:0, cpl:1.27, cpd:null},
-    {label:'jun 26', cost:65.11, leads:110, demos:0, cpl:0.59, cpd:null},
-    {label:'jul 26', cost:80.34, leads:53, demos:2, cpl:1.52, cpd:40.17}
+    {label:'may 26', cost:14.42, leads:13, demos:0, cpl:1.11, cpd:null},
+    {label:'jun 26', cost:88.25, leads:110, demos:0, cpl:0.8, cpd:null},
+    {label:'jul 26', cost:70.44, leads:53, demos:2, cpl:1.33, cpd:35.22}
   ]
 };
 /*END:COSTS*/
@@ -623,13 +623,13 @@ function renderPipeline(){
 }
 
 function renderCostes(){
-  const fmt=v=>v==null?'—':'$'+Number(v).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const fmt=v=>v==null?'—':Number(v).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
   const tb=$('#costes-table tbody'); if(!tb) return; tb.innerHTML='';
   COSTS.months.forEach(m=>tb.appendChild(el('tr',null,
     `<td>${m.label}</td><td class="num mono">${fmt(m.cost)}</td><td class="num">${m.leads}</td>`+
     `<td class="num">${m.demos}</td><td class="num mono">${fmt(m.cpl)}</td><td class="num mono">${fmt(m.cpd)}</td>`)));
   $('#costes-upd').textContent=COSTS.updated?('actualizado '+COSTS.updated):'';
-  $('#costes-note').innerHTML=`${COSTS.note||''} <span class="pill-src">Fuente: Anthropic Admin API · cost_report</span>`;
+  $('#costes-note').innerHTML=`${COSTS.note||''} <span class="pill-src">Fuente: Anthropic Admin API + Google Cloud billing · tipo BCE</span>`;
 }
 
 function renderB2B(){
