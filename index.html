@@ -351,18 +351,18 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-07-17 09:00', range:'20 may - 17 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:59};
+const META = {updated:'2026-07-20 09:01', range:'20 may - 17 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:59};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
-const PROSPECT = {total:223, activos:2, rango:'20 may - 16 jul 2026', mes_label:'jul 2026', mes_total:81};
+const PROSPECT = {total:225, activos:2, rango:'20 may - 17 jul 2026', mes_label:'jul 2026', mes_total:83};
 /*END:PROSPECT*/
 
 /*SYNC:PRODUCTS*/
 const PRODUCTS = [
   {key:'b2b', name:'Karcher B2B', desc:'Empresas · eliminación de contenido', color:'#1C7BBE', total:37, mes:11, estado:'Activo'},
   {key:'b2c', name:'Karcher B2C', desc:'Personas · huella digital', color:'#6fb2dd', total:0, mes:0, estado:'En construcción'},
-  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:167, mes:70, estado:'Activo'},
+  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:169, mes:72, estado:'Activo'},
   {key:'bajas', name:'Bajas', desc:'Re-prospección de clientes de baja', color:'#07D4A1', total:5, mes:0, estado:'Puntual'},
   {key:'perdidos', name:'Deals perdidos', desc:'Re-prospección de oportunidades perdidas', color:'#7c6cf0', total:14, mes:0, estado:'Puntual'}
 ];
@@ -372,7 +372,7 @@ const PRODUCTS = [
 const MONTHLY = [
   {label:'may 26', total:13, vals:{b2b:13, b2c:0, triki:0, bajas:0, perdidos:0}},
   {label:'jun 26', total:129, vals:{b2b:13, b2c:0, triki:97, bajas:5, perdidos:14}},
-  {label:'jul 26', total:81, vals:{b2b:11, b2c:0, triki:70, bajas:0, perdidos:0}}
+  {label:'jul 26', total:83, vals:{b2b:11, b2c:0, triki:72, bajas:0, perdidos:0}}
 ];
 /*END:MONTHLY*/
 
@@ -398,7 +398,7 @@ const COSTS = {
 /*END:COSTS*/
 
 /*SYNC:RECUP*/
-const RECUP = {bajas:[{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Mundimoto/AJ Moto', mes:'2026-06'},{empresa:'Vestiaire Collective', mes:'2026-06'},{empresa:'UniverMilenium', mes:'2026-06'},{empresa:'Winpot/Mazal TOV', mes:'2026-06'}], perdidos:[{empresa:'Mabel Capital', mes:'2026-06'},{empresa:'Wallbox', mes:'2026-06'},{empresa:'Dellafuente', mes:'2026-06'},{empresa:'Frucove', mes:'2026-06'},{empresa:'Ezcurra Cerrajeros', mes:'2026-06'},{empresa:'Studio Cappello Agency', mes:'2026-06'},{empresa:'Gipsy Kings', mes:'2026-06'},{empresa:'RMA Propiedad Industrial', mes:'2026-06'},{empresa:'WEBIMPACTO', mes:'2026-06'},{empresa:'Lerroux Patentes y Marcas', mes:'2026-06'},{empresa:'Roman y Asociados SA', mes:'2026-06'},{empresa:'Red Farma', mes:'2026-06'},{empresa:'COSMICA', mes:'2026-06'},{empresa:'Panamericana de Patentes y Marcas', mes:'2026-06'}]};
+const RECUP = {bajas:[{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Vestiaire Collective', mes:'2026-06'},{empresa:'UniverMilenium', mes:'2026-06'},{empresa:'Winpot/Mazal TOV', mes:'2026-06'},{empresa:'Mundimoto/AJ Moto', mes:'2026-06'}], perdidos:[{empresa:'Mabel Capital', mes:'2026-06'},{empresa:'Wallbox', mes:'2026-06'},{empresa:'Dellafuente', mes:'2026-06'},{empresa:'Frucove', mes:'2026-06'},{empresa:'Ezcurra Cerrajeros', mes:'2026-06'},{empresa:'Studio Cappello Agency', mes:'2026-06'},{empresa:'Gipsy Kings', mes:'2026-06'},{empresa:'RMA Propiedad Industrial', mes:'2026-06'},{empresa:'WEBIMPACTO', mes:'2026-06'},{empresa:'Roman y Asociados SA', mes:'2026-06'},{empresa:'Red Farma', mes:'2026-06'},{empresa:'COSMICA', mes:'2026-06'},{empresa:'Panamericana de Patentes y Marcas', mes:'2026-06'},{empresa:'Lerroux Patentes y Marcas', mes:'2026-06'}]};
 /*END:RECUP*/
 
 /*SYNC:KPIS*/
@@ -469,8 +469,8 @@ const FOLLOWUP = {
 
 /*SYNC:TRIKI*/
 const TRIKI = {
-  base:2861, contactables:451, crisis:616, outreach:168, demos:2,
-  ciudades:[{c:'Madrid', n:20},{c:'Pamplona', n:18},{c:'Bilbao', n:17},{c:'Barcelona', n:13},{c:'Sevilla', n:13},{c:'Valencia', n:13},{c:'Cádiz', n:11},{c:'Santander', n:9}],
+  base:2862, contactables:451, crisis:618, outreach:170, demos:2,
+  ciudades:[{c:'Madrid', n:20},{c:'Pamplona', n:18},{c:'Bilbao', n:17},{c:'Barcelona', n:13},{c:'Sevilla', n:13},{c:'Valencia', n:13},{c:'Cádiz', n:11},{c:'Santander', n:10}],
   demo_deals:[{name:'Compañía del Trópico', stage:'In Progress', fecha:'2026-07-07'},{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Quote Created', fecha:'2026-07-07'}]
 };
 /*END:TRIKI*/
