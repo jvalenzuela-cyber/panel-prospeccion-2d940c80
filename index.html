@@ -351,18 +351,18 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-07-22 09:00', range:'20 may - 21 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:63};
+const META = {updated:'2026-07-23 09:03', range:'20 may - 23 jul 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:65};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
-const PROSPECT = {total:241, activos:2, rango:'20 may - 22 jul 2026', mes_label:'jul 2026', mes_total:99};
+const PROSPECT = {total:240, activos:2, rango:'20 may - 22 jul 2026', mes_label:'jul 2026', mes_total:99};
 /*END:PROSPECT*/
 
 /*SYNC:PRODUCTS*/
 const PRODUCTS = [
   {key:'b2b', name:'Karcher B2B', desc:'Empresas · eliminación de contenido', color:'#1C7BBE', total:37, mes:11, estado:'Activo'},
   {key:'b2c', name:'Karcher B2C', desc:'Personas · huella digital', color:'#6fb2dd', total:0, mes:0, estado:'En construcción'},
-  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:185, mes:88, estado:'Activo'},
+  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:184, mes:88, estado:'Activo'},
   {key:'bajas', name:'Bajas', desc:'Re-prospección de clientes de baja', color:'#07D4A1', total:5, mes:0, estado:'Puntual'},
   {key:'perdidos', name:'Deals perdidos', desc:'Re-prospección de oportunidades perdidas', color:'#7c6cf0', total:14, mes:0, estado:'Puntual'}
 ];
@@ -371,7 +371,7 @@ const PRODUCTS = [
 /*SYNC:MONTHLY*/
 const MONTHLY = [
   {label:'may 26', total:13, vals:{b2b:13, b2c:0, triki:0, bajas:0, perdidos:0}},
-  {label:'jun 26', total:129, vals:{b2b:13, b2c:0, triki:97, bajas:5, perdidos:14}},
+  {label:'jun 26', total:128, vals:{b2b:13, b2c:0, triki:96, bajas:5, perdidos:14}},
   {label:'jul 26', total:99, vals:{b2b:11, b2c:0, triki:88, bajas:0, perdidos:0}}
 ];
 /*END:MONTHLY*/
@@ -459,8 +459,7 @@ const FOLLOWUP = {
   total:82, follow1:35, follow2:0, con_reply:2,
   states:[
     {s:'En pausa (esperando)', k:'paused', n:32, c:'#61708a'},
-    {s:'Cerrado: ya era cliente', k:'cancelled_now_client', n:42, c:'#1C7BBE'},
-    {s:'Pendiente 1er toque', k:'pending', n:2, c:'#e0952c'},
+    {s:'Cerrado: ya era cliente', k:'cancelled_now_client', n:44, c:'#1C7BBE'},
     {s:'Rebotado', k:'bounced', n:4, c:'#e2564a'},
     {s:'Con actividad en hilo', k:'replied', n:2, c:'#07D4A1'}
   ]
@@ -477,6 +476,8 @@ const TRIKI = {
 
 /*SYNC:HISTORIAL*/
 const HISTORIAL = [
+  {dt:'23/07 08:19', a:'brief_enviado', e:'(global)', v:'', g:0},
+  {dt:'23/07 08:18', a:'descartado_premisa', e:'Scotiabank', v:'', g:0},
   {dt:'21/07 09:16', a:'descartado_premisa', e:'Air Europa', v:'', g:0},
   {dt:'21/07 09:16', a:'descartado_premisa', e:'Madison Square Garden Entertainment', v:'', g:0},
   {dt:'21/07 09:16', a:'descartado_premisa', e:'Sika AG', v:'', g:0},
@@ -519,9 +520,7 @@ const HISTORIAL = [
   {dt:'07/07 08:23', a:'descartado_premisa', e:'Enusa Industrias Avanzadas', v:'', g:0},
   {dt:'07/07 08:23', a:'lead_zoho_creado', e:'ARSAT', v:'David Ramos', g:9},
   {dt:'07/07 08:23', a:'outreach_enviado', e:'ARSAT', v:'David Ramos', g:9},
-  {dt:'07/07 08:22', a:'descartado_premisa', e:'TNT / FedEx Logistics', v:'', g:0},
-  {dt:'06/07 08:34', a:'brief_enviado', e:'(global)', v:'', g:0},
-  {dt:'06/07 08:33', a:'outreach_enviado', e:'CeX España', v:'Juan Carlos Moreno', g:9}
+  {dt:'07/07 08:22', a:'descartado_premisa', e:'TNT / FedEx Logistics', v:'', g:0}
 ];
 /*END:HISTORIAL*/
 
