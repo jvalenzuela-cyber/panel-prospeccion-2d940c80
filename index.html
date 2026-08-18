@@ -351,18 +351,18 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-08-17 09:00', range:'20 may - 11 ago 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:84};
+const META = {updated:'2026-08-18 09:00', range:'20 may - 11 ago 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:84};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
-const PROSPECT = {total:300, activos:1, rango:'20 may - 14 ago 2026', mes_label:'ago 2026', mes_total:40};
+const PROSPECT = {total:304, activos:1, rango:'20 may - 17 ago 2026', mes_label:'ago 2026', mes_total:44};
 /*END:PROSPECT*/
 
 /*SYNC:PRODUCTS*/
 const PRODUCTS = [
   {key:'b2b', name:'Karcher B2B', desc:'Empresas · eliminación de contenido', color:'#1C7BBE', total:40, mes:0, estado:'Puntual'},
   {key:'b2c', name:'Karcher B2C', desc:'Personas · huella digital', color:'#6fb2dd', total:0, mes:0, estado:'En construcción'},
-  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:241, mes:40, estado:'Activo'},
+  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:245, mes:44, estado:'Activo'},
   {key:'bajas', name:'Bajas', desc:'Re-prospección de clientes de baja', color:'#07D4A1', total:5, mes:0, estado:'Puntual'},
   {key:'perdidos', name:'Deals perdidos', desc:'Re-prospección de oportunidades perdidas', color:'#7c6cf0', total:14, mes:0, estado:'Puntual'}
 ];
@@ -373,7 +373,7 @@ const MONTHLY = [
   {label:'may 26', total:13, vals:{b2b:13, b2c:0, triki:0, bajas:0, perdidos:0}},
   {label:'jun 26', total:124, vals:{b2b:13, b2c:0, triki:92, bajas:5, perdidos:14}},
   {label:'jul 26', total:123, vals:{b2b:14, b2c:0, triki:109, bajas:0, perdidos:0}},
-  {label:'ago 26', total:40, vals:{b2b:0, b2c:0, triki:40, bajas:0, perdidos:0}}
+  {label:'ago 26', total:44, vals:{b2b:0, b2c:0, triki:44, bajas:0, perdidos:0}}
 ];
 /*END:MONTHLY*/
 
@@ -472,8 +472,8 @@ const FOLLOWUP = {
 
 /*SYNC:TRIKI*/
 const TRIKI = {
-  base:2862, contactables:1488, crisis:618, outreach:248, demos:3,
-  ciudades:[{c:'Madrid', n:26},{c:'Pamplona', n:22},{c:'Bilbao', n:21},{c:'Sevilla', n:21},{c:'Barcelona', n:17},{c:'Santander', n:16},{c:'Valencia', n:16},{c:'Cádiz', n:13}],
+  base:2862, contactables:1488, crisis:618, outreach:252, demos:3,
+  ciudades:[{c:'Madrid', n:28},{c:'Pamplona', n:23},{c:'Bilbao', n:21},{c:'Sevilla', n:21},{c:'Barcelona', n:17},{c:'Santander', n:16},{c:'Valencia', n:16},{c:'Cádiz', n:13}],
   demo_deals:[{name:'Right Side Coffee Bar', stage:'Quote Created', fecha:'2026-07-30'},{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Closed Lost', fecha:'2026-07-07'},{name:'Compañía del Trópico', stage:'In Progress', fecha:'2026-07-07'}]
 };
 /*END:TRIKI*/
