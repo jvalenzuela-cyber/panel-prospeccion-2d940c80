@@ -351,18 +351,19 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-08-20 09:00', range:'20 may - 11 ago 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:84};
+const META = {updated:'2026-08-20 13:19', range:'20 may - 11 ago 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:84};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
-const PROSPECT = {total:317, activos:1, rango:'20 may - 19 ago 2026', mes_label:'ago 2026', mes_total:57};
+const PROSPECT = {total:325, activos:1, rango:'20 may - 20 ago 2026', mes_label:'ago 2026', mes_total:65};
 /*END:PROSPECT*/
 
 /*SYNC:PRODUCTS*/
 const PRODUCTS = [
   {key:'b2b', name:'Karcher B2B', desc:'Empresas · eliminación de contenido', color:'#1C7BBE', total:40, mes:0, estado:'Puntual'},
   {key:'b2c', name:'Karcher B2C', desc:'Personas · huella digital', color:'#6fb2dd', total:0, mes:0, estado:'En construcción'},
-  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:258, mes:57, estado:'Activo'},
+  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:266, mes:65, estado:'Activo'},
+  {key:'dental', name:'Triki dental', desc:'Clínicas · gestión de reseñas', color:'#efb46b', total:0, mes:0, estado:'En construcción'},
   {key:'bajas', name:'Bajas', desc:'Re-prospección de clientes de baja', color:'#07D4A1', total:5, mes:0, estado:'Puntual'},
   {key:'perdidos', name:'Deals perdidos', desc:'Re-prospección de oportunidades perdidas', color:'#7c6cf0', total:14, mes:0, estado:'Puntual'}
 ];
@@ -370,31 +371,37 @@ const PRODUCTS = [
 
 /*SYNC:MONTHLY*/
 const MONTHLY = [
-  {label:'may 26', total:13, vals:{b2b:13, b2c:0, triki:0, bajas:0, perdidos:0}},
-  {label:'jun 26', total:124, vals:{b2b:13, b2c:0, triki:92, bajas:5, perdidos:14}},
-  {label:'jul 26', total:123, vals:{b2b:14, b2c:0, triki:109, bajas:0, perdidos:0}},
-  {label:'ago 26', total:57, vals:{b2b:0, b2c:0, triki:57, bajas:0, perdidos:0}}
+  {label:'may 26', total:13, vals:{b2b:13, b2c:0, triki:0, dental:0, bajas:0, perdidos:0}},
+  {label:'jun 26', total:124, vals:{b2b:13, b2c:0, triki:92, dental:0, bajas:5, perdidos:14}},
+  {label:'jul 26', total:123, vals:{b2b:14, b2c:0, triki:109, dental:0, bajas:0, perdidos:0}},
+  {label:'ago 26', total:65, vals:{b2b:0, b2c:0, triki:65, dental:0, bajas:0, perdidos:0}}
 ];
 /*END:MONTHLY*/
 
 /*SYNC:PIPELINE*/
 const PIPELINE = {
   deals:[
-    {name:'Basic Plan SaaS B2B Gipsy Kings', product:'perdidos', color:'#7c6cf0', amount:21588, stage:'Closed Won', owner:'Óscar Sánchez', fecha:'2026-07-03'},
+    {name:'Basic Plan SaaS B2B Gipsy Kings', product:'perdidos', color:'#7c6cf0', amount:5397.0, stage:'Closed Won', owner:'Óscar Sánchez', fecha:'2026-07-03'},
     {name:'Right Side Coffee Bar', product:'triki', color:'#d9822b', amount:3615.48, stage:'Quote Created', owner:'Juan Carlos Moreno', fecha:'2026-07-30'},
     {name:'Trikis - La Tasca de Don José Plaza del Castillo', product:'triki', color:'#d9822b', amount:3615.48, stage:'Closed Lost', owner:'Alejandro Cabezas', fecha:'2026-07-07'},
-    {name:'Compañía del Trópico', product:'triki', color:'#d9822b', amount:129, stage:'In Progress', owner:'Juan Carlos Moreno', fecha:'2026-07-07'}
+    {name:'JuanLobo Food & Drinks - Eliminar perfil GBP', product:'triki', color:'#d9822b', amount:599, stage:'Closed Lost', owner:'Alejandro Cabezas', fecha:'2026-08-18'},
+    {name:'Compañía del Trópico', product:'triki', color:'#d9822b', amount:129, stage:'In Progress', owner:'Juan Carlos Moreno', fecha:'2026-07-07'},
+    {name:'Grup Mutis (Bar Mut)', product:'triki', color:'#d9822b', amount:0, stage:'In Progress', owner:'David Ramos', fecha:'2026-07-31'},
+    {name:'Reseñas Kubrick Bar Bilbao', product:'triki', color:'#d9822b', amount:0, stage:'In Progress', owner:'David Ramos', fecha:'2026-07-27'},
+    {name:'Taberna - Restaurante El Mentidero Málaga', product:'triki', color:'#d9822b', amount:0, stage:'In Progress', owner:'David Ramos', fecha:'2026-07-28'},
+    {name:'Reseñas Soleo', product:'triki', color:'#d9822b', amount:0, stage:'In Progress', owner:'David Ramos', fecha:'2026-07-22'}
   ]
 };
 /*END:PIPELINE*/
 
 /*SYNC:COSTS*/
 const COSTS = {
-  updated:'2026-07-15', note:'Coste de las APIs de prospección por mes, en euros. Claude (excluye Opus=experimentos) convertido de USD al tipo del BCE del 14-jul-2026 (1 € = 1,1405 $); Google Places API (censado de restaurantes para Triki) ya en € (Places: jun 31,16 €). Desposicionamiento apagado el 15-jun-2026.',
+  updated:'2026-08-17', note:'Coste de captación por mes, en euros. El embudo es lead → deal → ganada: los deals se cuentan en Zoho por fecha de creación, y la demo no se usa porque depende de un flag manual. Solo entra el gasto de las keys de prospección: el de otros equipos (producto, IT, operaciones) se descuenta antes de calcular. El total incluye lo que gastó la key genérica del runtime, que también es captación (los procesos que la usaban eran todos de prospección) pero no se puede repartir por flujo; ese trozo cuenta en el coste y se marca como no repartido. Claude convertido de USD al tipo del BCE del 2026-07-14 (1 € = 1,1405 $). Faltan por medir: Google Places API (falta el dato de este mes en Google Cloud billing), Apollo (créditos de enriquecimiento), Buzones de envío (Google Workspace), CloudTalk.',
   months:[
-    {label:'may 26', cost:14.42, leads:13, demos:0, cpl:1.11, cpd:null},
-    {label:'jun 26', cost:88.25, leads:110, demos:0, cpl:0.8, cpd:null},
-    {label:'jul 26', cost:70.44, leads:53, demos:2, cpl:1.33, cpd:35.22}
+    {label:'may 26', parcial:false, cost:48.47, leads:13, deals:0, ganadas:0, cpl:3.7285, ingreso_eur:0.0, atribucion_pct:0, otros_eur:0.0},
+    {label:'jun 26', parcial:false, cost:88.57, leads:105, deals:2, ganadas:1, cpl:0.8435, ingreso_eur:5397.0, atribucion_pct:0, otros_eur:0.0},
+    {label:'jul 26', parcial:false, cost:161.39, leads:123, deals:6, ganadas:0, cpl:1.3121, ingreso_eur:0.0, atribucion_pct:0, otros_eur:12.71},
+    {label:'ago 26', parcial:true, cost:2.31, leads:44, deals:0, ganadas:0, cpl:0.0525, ingreso_eur:0.0, atribucion_pct:4, otros_eur:8.38}
   ]
 };
 /*END:COSTS*/
@@ -404,7 +411,7 @@ const RECUP = {bajas:[{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Winpo
 /*END:RECUP*/
 
 /*SYNC:KPIS*/
-const KPIS = {detectadas:220, enviados:103, empresas:43, respuestas:3, tasa_resp:7, followups:35, follow1:35, follow2:0, demos:0, leads_zoho:41, bounces:4};
+const KPIS = {detectadas:220, enviados:103, empresas:43, respuestas:3, tasa_resp:7, followups:35, follow1:35, follow2:0, demos:0, oportunidades_b2b:0, ventas_b2b:0, cuentas:[{'name': 'Bizum', 'ciudad': '', 'vendedor': 'David Ramos', 'first': '2026-05-28', 'estado': 'Positiva', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}, {'name': 'Antel', 'ciudad': '', 'vendedor': 'Juan Carlos Moreno', 'first': '2026-07-02', 'estado': 'Respondió', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}, {'name': 'Decathlon', 'ciudad': '', 'vendedor': 'David Ramos', 'first': '2026-05-27', 'estado': 'Respondió', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}], leads_zoho:41, bounces:4};
 /*END:KPIS*/
 
 /*SYNC:FUNNEL*/
@@ -472,9 +479,9 @@ const FOLLOWUP = {
 
 /*SYNC:TRIKI*/
 const TRIKI = {
-  base:2862, contactables:1488, crisis:618, outreach:265, demos:3,
-  ciudades:[{c:'Madrid', n:30},{c:'Pamplona', n:24},{c:'Sevilla', n:24},{c:'Bilbao', n:22},{c:'Barcelona', n:17},{c:'Valencia', n:17},{c:'Santander', n:16},{c:'Cádiz', n:14}],
-  demo_deals:[{name:'Right Side Coffee Bar', stage:'Quote Created', fecha:'2026-07-30'},{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Closed Lost', fecha:'2026-07-07'},{name:'Compañía del Trópico', stage:'In Progress', fecha:'2026-07-07'}]
+  base:2862, contactables:1488, crisis:618, outreach:273, demos:3,
+  ciudades:[{c:'Madrid', n:30},{c:'Pamplona', n:24},{c:'Sevilla', n:24},{c:'Bilbao', n:23},{c:'Barcelona', n:17},{c:'Santander', n:17},{c:'Valencia', n:17},{c:'Cádiz', n:14}],
+  demo_deals:[{name:'JuanLobo Food & Drinks - Eliminar perfil GBP', stage:'Closed Lost', fecha:'2026-08-18'},{name:'Right Side Coffee Bar', stage:'Quote Created', fecha:'2026-07-30'},{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Closed Lost', fecha:'2026-07-07'},{name:'Grup Mutis (Bar Mut)', stage:'In Progress', fecha:'2026-07-31'},{name:'Reseñas Kubrick Bar Bilbao', stage:'In Progress', fecha:'2026-07-27'},{name:'Taberna - Restaurante El Mentidero Málaga', stage:'In Progress', fecha:'2026-07-28'},{name:'Reseñas Soleo', stage:'In Progress', fecha:'2026-07-22'},{name:'Compañía del Trópico', stage:'In Progress', fecha:'2026-07-07'}]
 };
 /*END:TRIKI*/
 
