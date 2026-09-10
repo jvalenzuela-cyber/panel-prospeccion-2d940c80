@@ -351,18 +351,18 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-09-09 10:53', range:'20 may - 8 sep 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:112};
+const META = {updated:'2026-09-10 09:02', range:'20 may - 9 sep 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:113};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
-const PROSPECT = {total:495, activos:1, rango:'20 may - 9 sep 2026', mes_label:'sep 2026', mes_total:102};
+const PROSPECT = {total:494, activos:1, rango:'20 may - 9 sep 2026', mes_label:'sep 2026', mes_total:100};
 /*END:PROSPECT*/
 
 /*SYNC:PRODUCTS*/
 const PRODUCTS = [
   {key:'b2b', name:'Karcher B2B', desc:'Empresas · eliminación de contenido', color:'#1C7BBE', total:40, mes:0, estado:'Puntual'},
   {key:'b2c', name:'Karcher B2C', desc:'Personas · huella digital', color:'#6fb2dd', total:0, mes:0, estado:'En construcción'},
-  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:420, mes:102, estado:'Activo'},
+  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:419, mes:100, estado:'Activo'},
   {key:'dental', name:'Triki dental', desc:'Clínicas · gestión de reseñas', color:'#efb46b', total:0, mes:0, estado:'En construcción'},
   {key:'bajas', name:'Bajas', desc:'Re-prospección de clientes de baja', color:'#07D4A1', total:5, mes:0, estado:'Puntual'},
   {key:'perdidos', name:'Deals perdidos', desc:'Re-prospección de oportunidades perdidas', color:'#7c6cf0', total:30, mes:0, estado:'Puntual'}
@@ -371,11 +371,11 @@ const PRODUCTS = [
 
 /*SYNC:MONTHLY*/
 const MONTHLY = [
-  {label:'may 26', total:13, vals:{b2b:13, b2c:0, triki:0, dental:0, bajas:0, perdidos:0}},
+  {label:'may 26', total:14, vals:{b2b:13, b2c:0, triki:1, dental:0, bajas:0, perdidos:0}},
   {label:'jun 26', total:124, vals:{b2b:13, b2c:0, triki:92, dental:0, bajas:5, perdidos:14}},
   {label:'jul 26', total:123, vals:{b2b:14, b2c:0, triki:109, dental:0, bajas:0, perdidos:0}},
   {label:'ago 26', total:133, vals:{b2b:0, b2c:0, triki:117, dental:0, bajas:0, perdidos:16}},
-  {label:'sep 26', total:102, vals:{b2b:0, b2c:0, triki:102, dental:0, bajas:0, perdidos:0}}
+  {label:'sep 26', total:100, vals:{b2b:0, b2c:0, triki:100, dental:0, bajas:0, perdidos:0}}
 ];
 /*END:MONTHLY*/
 
@@ -386,6 +386,7 @@ const PIPELINE = {
     {name:'Right Side Coffee Bar', product:'triki', color:'#d9822b', amount:3615.48, stage:'Closed Lost', owner:'Juan Carlos Moreno', fecha:'2026-07-30'},
     {name:'Trikis - La Tasca de Don José Plaza del Castillo', product:'triki', color:'#d9822b', amount:3615.48, stage:'Closed Lost', owner:'Juan Carlos Moreno', fecha:'2026-07-07'},
     {name:'JuanLobo Food & Drinks - Eliminar perfil GBP', product:'triki', color:'#d9822b', amount:599, stage:'Closed Lost', owner:'Alejandro Cabezas', fecha:'2026-08-18'},
+    {name:'Pack 3 Reseñas. Restaurante Al Punto', product:'triki', color:'#d9822b', amount:499, stage:'Quote Created', owner:'David Ramos', fecha:'2026-09-09'},
     {name:'La Taberna Asturiana - El Cachopo', product:'triki', color:'#d9822b', amount:199, stage:'Quote Created', owner:'Juan Carlos Moreno', fecha:'2026-08-25'},
     {name:'Compañía del Trópico', product:'triki', color:'#d9822b', amount:129, stage:'In Progress', owner:'Juan Carlos Moreno', fecha:'2026-07-07'},
     {name:'d’Alicia Café Guadalmina', product:'triki', color:'#d9822b', amount:0, stage:'In Progress', owner:'Juan Carlos Moreno', fecha:'2026-09-08'},
@@ -485,7 +486,7 @@ const FOLLOWUP = {
 const TRIKI = {
   base:3753, contactables:1738, crisis:1198, outreach:428, demos:3,
   ciudades:[{c:'Madrid', n:103},{c:'Barcelona', n:37},{c:'Pamplona', n:27},{c:'Bilbao', n:25},{c:'Sevilla', n:25},{c:'Santander', n:19},{c:'Valencia', n:19},{c:'Marbella', n:17}],
-  demo_deals:[{name:'d’Alicia Café Guadalmina', stage:'In Progress', fecha:'2026-09-08'},{name:'Taberna - Restaurante El Mentidero Málaga', stage:'Closed Lost', fecha:'2026-07-28'},{name:'Right Side Coffee Bar', stage:'Closed Lost', fecha:'2026-07-30'},{name:'La Taberna Asturiana - El Cachopo', stage:'Quote Created', fecha:'2026-08-25'},{name:'Restaurante La Jamonería de Carmen', stage:'In Progress', fecha:'2026-08-25'},{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Closed Lost', fecha:'2026-07-07'},{name:'JuanLobo Food & Drinks - Eliminar perfil GBP', stage:'Closed Lost', fecha:'2026-08-18'},{name:'Grup Mutis (Bar Mut)', stage:'In Progress', fecha:'2026-07-31'},{name:'Reseñas Kubrick Bar Bilbao', stage:'In Progress', fecha:'2026-07-27'},{name:'Reseñas Soleo', stage:'In Progress', fecha:'2026-07-22'},{name:'Compañía del Trópico', stage:'In Progress', fecha:'2026-07-07'}]
+  demo_deals:[{name:'Pack 3 Reseñas. Restaurante Al Punto', stage:'Quote Created', fecha:'2026-09-09'},{name:'d’Alicia Café Guadalmina', stage:'In Progress', fecha:'2026-09-08'},{name:'Taberna - Restaurante El Mentidero Málaga', stage:'Closed Lost', fecha:'2026-07-28'},{name:'Right Side Coffee Bar', stage:'Closed Lost', fecha:'2026-07-30'},{name:'La Taberna Asturiana - El Cachopo', stage:'Quote Created', fecha:'2026-08-25'},{name:'Restaurante La Jamonería de Carmen', stage:'In Progress', fecha:'2026-08-25'},{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Closed Lost', fecha:'2026-07-07'},{name:'JuanLobo Food & Drinks - Eliminar perfil GBP', stage:'Closed Lost', fecha:'2026-08-18'},{name:'Grup Mutis (Bar Mut)', stage:'In Progress', fecha:'2026-07-31'},{name:'Reseñas Kubrick Bar Bilbao', stage:'In Progress', fecha:'2026-07-27'},{name:'Reseñas Soleo', stage:'In Progress', fecha:'2026-07-22'},{name:'Compañía del Trópico', stage:'In Progress', fecha:'2026-07-07'}]
 };
 /*END:TRIKI*/
 
