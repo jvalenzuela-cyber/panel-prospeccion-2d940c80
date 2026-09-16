@@ -351,18 +351,18 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-09-15 09:03', range:'20 may - 14 sep 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:118};
+const META = {updated:'2026-09-16 09:05', range:'20 may - 15 sep 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:119};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
-const PROSPECT = {total:524, activos:1, rango:'20 may - 14 sep 2026', mes_label:'sep 2026', mes_total:130};
+const PROSPECT = {total:523, activos:1, rango:'20 may - 14 sep 2026', mes_label:'sep 2026', mes_total:129};
 /*END:PROSPECT*/
 
 /*SYNC:PRODUCTS*/
 const PRODUCTS = [
   {key:'b2b', name:'Karcher B2B', desc:'Empresas · eliminación de contenido', color:'#1C7BBE', total:40, mes:0, estado:'Puntual'},
   {key:'b2c', name:'Karcher B2C', desc:'Personas · huella digital', color:'#6fb2dd', total:0, mes:0, estado:'En construcción'},
-  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:449, mes:130, estado:'Activo'},
+  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:448, mes:129, estado:'Activo'},
   {key:'dental', name:'Triki dental', desc:'Clínicas · gestión de reseñas', color:'#efb46b', total:0, mes:0, estado:'En construcción'},
   {key:'bajas', name:'Bajas', desc:'Re-prospección de clientes de baja', color:'#07D4A1', total:5, mes:0, estado:'Puntual'},
   {key:'perdidos', name:'Deals perdidos', desc:'Re-prospección de oportunidades perdidas', color:'#7c6cf0', total:30, mes:0, estado:'Puntual'}
@@ -375,7 +375,7 @@ const MONTHLY = [
   {label:'jun 26', total:124, vals:{b2b:13, b2c:0, triki:92, dental:0, bajas:5, perdidos:14}},
   {label:'jul 26', total:123, vals:{b2b:14, b2c:0, triki:109, dental:0, bajas:0, perdidos:0}},
   {label:'ago 26', total:133, vals:{b2b:0, b2c:0, triki:117, dental:0, bajas:0, perdidos:16}},
-  {label:'sep 26', total:130, vals:{b2b:0, b2c:0, triki:130, dental:0, bajas:0, perdidos:0}}
+  {label:'sep 26', total:129, vals:{b2b:0, b2c:0, triki:129, dental:0, bajas:0, perdidos:0}}
 ];
 /*END:MONTHLY*/
 
@@ -387,14 +387,15 @@ const PIPELINE = {
     {name:'Trikis - La Tasca de Don José Plaza del Castillo', product:'triki', color:'#d9822b', amount:3615.48, stage:'Closed Lost', owner:'Juan Carlos Moreno', fecha:'2026-07-07'},
     {name:'Triki Restaurante Muxía', product:'b2b', color:'#1C7BBE', amount:3615.48, stage:'Quote Created', owner:'David Ramos', fecha:'2026-09-14'},
     {name:'JuanLobo Food & Drinks - Eliminar perfil GBP', product:'triki', color:'#d9822b', amount:599, stage:'Closed Lost', owner:'Alejandro Cabezas', fecha:'2026-08-18'},
-    {name:'Pack 3 Reseñas. Restaurante Al Punto', product:'triki', color:'#d9822b', amount:499, stage:'Quote Created', owner:'David Ramos', fecha:'2026-09-09'},
+    {name:'Pack 3 Reseñas. Restaurante Al Punto', product:'triki', color:'#d9822b', amount:499, stage:'Closed Lost', owner:'David Ramos', fecha:'2026-09-09'},
     {name:'La Taberna Asturiana - El Cachopo', product:'triki', color:'#d9822b', amount:199, stage:'Quote Created', owner:'Juan Carlos Moreno', fecha:'2026-08-25'},
-    {name:'Compañía del Trópico', product:'triki', color:'#d9822b', amount:129, stage:'In Progress', owner:'Juan Carlos Moreno', fecha:'2026-07-07'},
+    {name:'Compañía del Trópico', product:'triki', color:'#d9822b', amount:129, stage:'Closed Lost', owner:'Juan Carlos Moreno', fecha:'2026-07-07'},
+    {name:'Triki Enjoy it Girona', product:'triki', color:'#d9822b', amount:0, stage:'In Progress', owner:'David Ramos', fecha:'2026-09-15'},
+    {name:'Grup Mutis (Bar Mut)', product:'triki', color:'#d9822b', amount:0, stage:'Closed Lost', owner:'David Ramos', fecha:'2026-07-31'},
     {name:'Reseñas Soleo', product:'triki', color:'#d9822b', amount:0, stage:'Closed Lost', owner:'David Ramos', fecha:'2026-07-22'},
     {name:'d’Alicia Café Guadalmina', product:'triki', color:'#d9822b', amount:0, stage:'In Progress', owner:'Juan Carlos Moreno', fecha:'2026-09-08'},
     {name:'Taberna - Restaurante El Mentidero Málaga', product:'triki', color:'#d9822b', amount:0, stage:'Closed Lost', owner:'David Ramos', fecha:'2026-07-28'},
     {name:'Restaurante La Jamonería de Carmen', product:'triki', color:'#d9822b', amount:0, stage:'In Progress', owner:'Juan Carlos Moreno', fecha:'2026-08-25'},
-    {name:'Grup Mutis (Bar Mut)', product:'triki', color:'#d9822b', amount:0, stage:'In Progress', owner:'David Ramos', fecha:'2026-07-31'},
     {name:'Reseñas Kubrick Bar Bilbao', product:'triki', color:'#d9822b', amount:0, stage:'In Progress', owner:'David Ramos', fecha:'2026-07-27'}
   ]
 };
@@ -413,11 +414,11 @@ const COSTS = {
 /*END:COSTS*/
 
 /*SYNC:RECUP*/
-const RECUP = {bajas:[{empresa:'Mundimoto/AJ Moto', mes:'2026-06'},{empresa:'Vestiaire Collective', mes:'2026-06'},{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Winpot/Mazal TOV', mes:'2026-06'},{empresa:'UniverMilenium', mes:'2026-06'}], perdidos:[{empresa:'COSMICA', mes:'2026-06'},{empresa:'Gipsy Kings', mes:'2026-06'},{empresa:'Studio Cappello Agency', mes:'2026-06'},{empresa:'WEBIMPACTO', mes:'2026-06'},{empresa:'RMA Propiedad Industrial', mes:'2026-06'},{empresa:'Dellafuente', mes:'2026-06'},{empresa:'Mabel Capital', mes:'2026-06'},{empresa:'Wallbox', mes:'2026-06'},{empresa:'Frucove', mes:'2026-06'},{empresa:'Ezcurra Cerrajeros', mes:'2026-06'},{empresa:'Roman y Asociados SA', mes:'2026-06'},{empresa:'Red Farma', mes:'2026-06'},{empresa:'Panamericana de Patentes y Marcas', mes:'2026-06'},{empresa:'Lerroux Patentes y Marcas', mes:'2026-06'},{empresa:'Roman y Asociados SA', mes:'2026-08'},{empresa:'Mente Digital SL', mes:'2026-08'},{empresa:'Ignacio BGA IP', mes:'2026-08'},{empresa:'Bonsái Consultores', mes:'2026-08'},{empresa:'Elena Cusi', mes:'2026-08'},{empresa:'ACENTOENLACE SL', mes:'2026-08'},{empresa:'Carlos Fuentes padilla', mes:'2026-08'},{empresa:'Tolo Moya', mes:'2026-08'},{empresa:'Ainara Eneriz', mes:'2026-08'},{empresa:'Diana Soneira', mes:'2026-08'},{empresa:'Hesperia World', mes:'2026-08'},{empresa:'Vanesa Alarcon Caparros', mes:'2026-08'},{empresa:'Grupo Tandal', mes:'2026-08'},{empresa:'Jennifer', mes:'2026-08'},{empresa:'Automatic Reparación', mes:'2026-08'},{empresa:'Cristina Oficina Randemar', mes:'2026-08'}]};
+const RECUP = {bajas:[{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Mundimoto/AJ Moto', mes:'2026-06'},{empresa:'Vestiaire Collective', mes:'2026-06'},{empresa:'Winpot/Mazal TOV', mes:'2026-06'},{empresa:'UniverMilenium', mes:'2026-06'}], perdidos:[{empresa:'COSMICA', mes:'2026-06'},{empresa:'Gipsy Kings', mes:'2026-06'},{empresa:'Studio Cappello Agency', mes:'2026-06'},{empresa:'WEBIMPACTO', mes:'2026-06'},{empresa:'RMA Propiedad Industrial', mes:'2026-06'},{empresa:'Dellafuente', mes:'2026-06'},{empresa:'Mabel Capital', mes:'2026-06'},{empresa:'Wallbox', mes:'2026-06'},{empresa:'Frucove', mes:'2026-06'},{empresa:'Ezcurra Cerrajeros', mes:'2026-06'},{empresa:'Roman y Asociados SA', mes:'2026-06'},{empresa:'Red Farma', mes:'2026-06'},{empresa:'Panamericana de Patentes y Marcas', mes:'2026-06'},{empresa:'Lerroux Patentes y Marcas', mes:'2026-06'},{empresa:'Roman y Asociados SA', mes:'2026-08'},{empresa:'Mente Digital SL', mes:'2026-08'},{empresa:'Ignacio BGA IP', mes:'2026-08'},{empresa:'Bonsái Consultores', mes:'2026-08'},{empresa:'Elena Cusi', mes:'2026-08'},{empresa:'ACENTOENLACE SL', mes:'2026-08'},{empresa:'Carlos Fuentes padilla', mes:'2026-08'},{empresa:'Tolo Moya', mes:'2026-08'},{empresa:'Ainara Eneriz', mes:'2026-08'},{empresa:'Diana Soneira', mes:'2026-08'},{empresa:'Hesperia World', mes:'2026-08'},{empresa:'Vanesa Alarcon Caparros', mes:'2026-08'},{empresa:'Grupo Tandal', mes:'2026-08'},{empresa:'Jennifer', mes:'2026-08'},{empresa:'Automatic Reparación', mes:'2026-08'},{empresa:'Cristina Oficina Randemar', mes:'2026-08'}]};
 /*END:RECUP*/
 
 /*SYNC:KPIS*/
-const KPIS = {detectadas:220, enviados:103, empresas:43, respuestas:3, tasa_resp:7, followups:35, follow1:35, follow2:0, demos:1, oportunidades_b2b:1, ventas_b2b:0, cuentas:[{'name': 'Bizum', 'ciudad': '', 'vendedor': 'David Ramos', 'first': '2026-05-28', 'estado': 'Positiva', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}, {'name': 'Antel', 'ciudad': '', 'vendedor': 'Juan Carlos Moreno', 'first': '2026-07-02', 'estado': 'Respondió', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}, {'name': 'Decathlon', 'ciudad': '', 'vendedor': 'David Ramos', 'first': '2026-05-27', 'estado': 'Respondió', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}], leads_zoho:41, bounces:4};
+const KPIS = {detectadas:220, enviados:103, empresas:43, respuestas:3, tasa_resp:7, followups:35, follow1:35, follow2:0, demos:1, oportunidades_b2b:1, ventas_b2b:0, cuentas:[{'name': 'Bizum', 'ciudad': '', 'vendedor': 'David Ramos', 'first': '2026-05-28', 'estado': 'Positiva', 'last': '2026-05-29', 'respuestas': 2, 'snippet': 'Buenos días, David: Como agencia, nos vienen muy bien vuestras referencias para teneros localizados por si surge la necesidad. Seguimos en contacto. Un saludo, Patricia De: David Ramos Dolz &lt;dramos@', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}, {'name': 'Antel', 'ciudad': '', 'vendedor': 'Juan Carlos Moreno', 'first': '2026-07-02', 'estado': 'Respondió', 'last': '2026-07-29', 'respuestas': 1, 'snippet': 'Buenas tardes Juan Carlos Te agradecemos pero ya Antel está trabajando en este tema hace tiempo. Saludos Cr. José Carlos López, MGT Gerente División Marketing Tel: +598 2 9286336 E-mail: jlopez@antel.', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}, {'name': 'Decathlon', 'ciudad': '', 'vendedor': 'David Ramos', 'first': '2026-05-27', 'estado': 'Respondió', 'last': '2026-06-01', 'respuestas': 1, 'snippet': 'Hola David, muchas gracias por tu correo, he pasado tu email a quien lleva estos asuntos para que te contacte en caso de necesidad. Saludos, Amador. El mié, 27 may 2026 a las 11:00, David Ramos Dolz (', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}], leads_zoho:41, bounces:4};
 /*END:KPIS*/
 
 /*SYNC:FUNNEL*/
@@ -487,7 +488,7 @@ const FOLLOWUP = {
 const TRIKI = {
   base:3753, contactables:1738, crisis:1198, outreach:459, demos:3,
   ciudades:[{c:'Madrid', n:113},{c:'Barcelona', n:39},{c:'Pamplona', n:30},{c:'Bilbao', n:25},{c:'Sevilla', n:25},{c:'Santander', n:20},{c:'Valencia', n:19},{c:'Marbella', n:18}],
-  demo_deals:[{name:'Reseñas Soleo', stage:'Closed Lost', fecha:'2026-07-22'},{name:'Pack 3 Reseñas. Restaurante Al Punto', stage:'Quote Created', fecha:'2026-09-09'},{name:'d’Alicia Café Guadalmina', stage:'In Progress', fecha:'2026-09-08'},{name:'Taberna - Restaurante El Mentidero Málaga', stage:'Closed Lost', fecha:'2026-07-28'},{name:'Right Side Coffee Bar', stage:'Closed Lost', fecha:'2026-07-30'},{name:'La Taberna Asturiana - El Cachopo', stage:'Quote Created', fecha:'2026-08-25'},{name:'Restaurante La Jamonería de Carmen', stage:'In Progress', fecha:'2026-08-25'},{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Closed Lost', fecha:'2026-07-07'},{name:'JuanLobo Food & Drinks - Eliminar perfil GBP', stage:'Closed Lost', fecha:'2026-08-18'},{name:'Grup Mutis (Bar Mut)', stage:'In Progress', fecha:'2026-07-31'},{name:'Reseñas Kubrick Bar Bilbao', stage:'In Progress', fecha:'2026-07-27'},{name:'Compañía del Trópico', stage:'In Progress', fecha:'2026-07-07'}]
+  demo_deals:[{name:'Triki Enjoy it Girona', stage:'In Progress', fecha:'2026-09-15'},{name:'Grup Mutis (Bar Mut)', stage:'Closed Lost', fecha:'2026-07-31'},{name:'Pack 3 Reseñas. Restaurante Al Punto', stage:'Closed Lost', fecha:'2026-09-09'},{name:'Compañía del Trópico', stage:'Closed Lost', fecha:'2026-07-07'},{name:'Reseñas Soleo', stage:'Closed Lost', fecha:'2026-07-22'},{name:'d’Alicia Café Guadalmina', stage:'In Progress', fecha:'2026-09-08'},{name:'Taberna - Restaurante El Mentidero Málaga', stage:'Closed Lost', fecha:'2026-07-28'},{name:'Right Side Coffee Bar', stage:'Closed Lost', fecha:'2026-07-30'},{name:'La Taberna Asturiana - El Cachopo', stage:'Quote Created', fecha:'2026-08-25'},{name:'Restaurante La Jamonería de Carmen', stage:'In Progress', fecha:'2026-08-25'},{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Closed Lost', fecha:'2026-07-07'},{name:'JuanLobo Food & Drinks - Eliminar perfil GBP', stage:'Closed Lost', fecha:'2026-08-18'},{name:'Reseñas Kubrick Bar Bilbao', stage:'In Progress', fecha:'2026-07-27'}]
 };
 /*END:TRIKI*/
 
