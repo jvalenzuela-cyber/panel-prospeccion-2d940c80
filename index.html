@@ -351,19 +351,19 @@
    DATOS · horneados por sync_panel.py (Zoho + radar.db + historial.csv). No editar a mano.
    ================================================================== */
 /*SYNC:META*/
-const META = {updated:'2026-09-28 09:08', range:'20 may - 25 sep 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:129};
+const META = {updated:'2026-09-29 09:02', range:'20 may - 28 sep 2026', source:'Zoho CRM + Gmail auditado + radar.db', dias:132};
 /*END:META*/
 
 /*SYNC:PROSPECT*/
-const PROSPECT = {total:634, activos:3, rango:'20 may - 25 sep 2026', mes_label:'sep 2026', mes_total:242};
+const PROSPECT = {total:653, activos:3, rango:'20 may - 28 sep 2026', mes_label:'sep 2026', mes_total:261};
 /*END:PROSPECT*/
 
 /*SYNC:PRODUCTS*/
 const PRODUCTS = [
   {key:'b2b', name:'Karcher B2B', desc:'Empresas · eliminación de contenido', color:'#1C7BBE', total:40, mes:0, estado:'Puntual'},
   {key:'b2c', name:'Karcher B2C', desc:'Personas · huella digital', color:'#6fb2dd', total:0, mes:0, estado:'En construcción'},
-  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:516, mes:197, estado:'Activo'},
-  {key:'dental', name:'Triki dental', desc:'Clínicas · gestión de reseñas', color:'#efb46b', total:33, mes:33, estado:'Activo'},
+  {key:'triki', name:'Triki', desc:'Restaurantes · gestión de reseñas', color:'#d9822b', total:532, mes:213, estado:'Activo'},
+  {key:'dental', name:'Triki dental', desc:'Clínicas · gestión de reseñas', color:'#efb46b', total:36, mes:36, estado:'Activo'},
   {key:'bajas', name:'Bajas', desc:'Re-prospección de clientes de baja', color:'#07D4A1', total:5, mes:0, estado:'Puntual'},
   {key:'perdidos', name:'Deals perdidos', desc:'Re-prospección de oportunidades perdidas', color:'#7c6cf0', total:40, mes:12, estado:'Activo'}
 ];
@@ -375,7 +375,7 @@ const MONTHLY = [
   {label:'jun 26', total:122, vals:{b2b:13, b2c:0, triki:92, dental:0, bajas:5, perdidos:12}},
   {label:'jul 26', total:123, vals:{b2b:14, b2c:0, triki:109, dental:0, bajas:0, perdidos:0}},
   {label:'ago 26', total:133, vals:{b2b:0, b2c:0, triki:117, dental:0, bajas:0, perdidos:16}},
-  {label:'sep 26', total:242, vals:{b2b:0, b2c:0, triki:197, dental:33, bajas:0, perdidos:12}}
+  {label:'sep 26', total:261, vals:{b2b:0, b2c:0, triki:213, dental:36, bajas:0, perdidos:12}}
 ];
 /*END:MONTHLY*/
 
@@ -425,14 +425,14 @@ const RECUP = {bajas:[{empresa:'Amistat Hostels', mes:'2026-06'},{empresa:'Mundi
 /*END:RECUP*/
 
 /*SYNC:KPIS*/
-const KPIS = {detectadas:220, enviados:103, empresas:43, respuestas:3, tasa_resp:7, followups:35, follow1:35, follow2:0, demos:1, oportunidades_b2b:1, ventas_b2b:0, cuentas:[{'name': 'Bizum', 'ciudad': '', 'vendedor': 'David Ramos', 'first': '2026-05-28', 'estado': 'Positiva', 'last': '2026-05-29', 'respuestas': 2, 'snippet': 'Buenos días, David: Como agencia, nos vienen muy bien vuestras referencias para teneros localizados por si surge la necesidad. Seguimos en contacto. Un saludo, Patricia De: David Ramos Dolz &lt;dramos@', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}, {'name': 'Antel', 'ciudad': '', 'vendedor': 'Juan Carlos Moreno', 'first': '2026-07-02', 'estado': 'Respondió', 'last': '2026-07-29', 'respuestas': 1, 'snippet': 'Buenas tardes Juan Carlos Te agradecemos pero ya Antel está trabajando en este tema hace tiempo. Saludos Cr. José Carlos López, MGT Gerente División Marketing Tel: +598 2 9286336 E-mail: jlopez@antel.', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}, {'name': 'Decathlon', 'ciudad': '', 'vendedor': 'David Ramos', 'first': '2026-05-27', 'estado': 'Respondió', 'last': '2026-06-01', 'respuestas': 1, 'snippet': 'Hola David, muchas gracias por tu correo, he pasado tu email a quien lleva estos asuntos para que te contacte en caso de necesidad. Saludos, Amador. El mié, 27 may 2026 a las 11:00, David Ramos Dolz (', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}], leads_zoho:41, bounces:4};
+const KPIS = {detectadas:220, enviados:103, empresas:43, respuestas:1, tasa_resp:2, followups:35, follow1:35, follow2:0, demos:1, oportunidades_b2b:1, ventas_b2b:0, cuentas:[{'name': 'Antel', 'ciudad': '', 'vendedor': 'Juan Carlos Moreno', 'first': '2026-07-02', 'estado': 'Respondió', 'last': '2026-07-29', 'respuestas': 1, 'snippet': 'Buenas tardes Juan Carlos Te agradecemos pero ya Antel está trabajando en este tema hace tiempo. Saludos Cr. José Carlos López, MGT Gerente División Marketing Tel: +598 2 9286336 E-mail: jlopez@antel.', 'deal_stage': '', 'amount': None, 'demo': False, 'venta': False}], leads_zoho:41, bounces:4};
 /*END:KPIS*/
 
 /*SYNC:FUNNEL*/
 const FUNNEL = [
   {k:'Detectadas', v:220},
   {k:'Contactadas', v:43},
-  {k:'Respondieron', v:3},
+  {k:'Respondieron', v:1},
   {k:'Pidió demo (deal)', v:1},
   {k:'Demo agendada', v:1}
 ];
@@ -440,9 +440,9 @@ const FUNNEL = [
 
 /*SYNC:VERTICALS*/
 const VERTICALS = [
-  {name:'Tecnología', env:26, resp:1, tasa:4},
+  {name:'Tecnología', env:26, resp:0, tasa:0},
   {name:'Infraestructuras', env:21, resp:1, tasa:5},
-  {name:'Retail', env:20, resp:1, tasa:5},
+  {name:'Retail', env:20, resp:0, tasa:0},
   {name:'Otros', env:10, resp:0, tasa:0},
   {name:'Seguros', env:7, resp:0, tasa:0},
   {name:'Farma', env:4, resp:0, tasa:0},
@@ -457,7 +457,7 @@ const VERTICALS = [
 
 /*SYNC:VENDORS*/
 const VENDORS = [
-  {name:'David Ramos', env:50, resp:2, tasa:4, fu:41},
+  {name:'David Ramos', env:50, resp:0, tasa:0, fu:41},
   {name:'Alejandro Cabezas', env:36, resp:0, tasa:0, fu:34},
   {name:'Juan Carlos Moreno', env:17, resp:1, tasa:6, fu:13}
 ];
@@ -466,8 +466,7 @@ const VENDORS = [
 /*SYNC:WEEKLY*/
 const WEEKLY = [
   {wk:'18/05', env:17, resp:0},
-  {wk:'25/05', env:35, resp:1},
-  {wk:'01/06', env:0, resp:1},
+  {wk:'25/05', env:35, resp:0},
   {wk:'08/06', env:7, resp:0},
   {wk:'15/06', env:7, resp:0},
   {wk:'22/06', env:3, resp:0},
@@ -480,7 +479,7 @@ const WEEKLY = [
 
 /*SYNC:FOLLOWUP*/
 const FOLLOWUP = {
-  total:88, follow1:35, follow2:0, con_reply:3,
+  total:88, follow1:35, follow2:0, con_reply:1,
   states:[
     {s:'En pausa (esperando)', k:'paused', n:32, c:'#61708a'},
     {s:'Cerrado: ya era cliente', k:'cancelled_now_client', n:44, c:'#1C7BBE'},
@@ -493,8 +492,8 @@ const FOLLOWUP = {
 
 /*SYNC:TRIKI*/
 const TRIKI = {
-  base:4211, contactables:1870, crisis:1434, outreach:533, demos:3,
-  ciudades:[{c:'Madrid', n:130},{c:'Valencia', n:50},{c:'Barcelona', n:46},{c:'Bilbao', n:42},{c:'Pamplona', n:31},{c:'Sevilla', n:25},{c:'Santander', n:20},{c:'Marbella', n:18}],
+  base:4761, contactables:1991, crisis:1718, outreach:549, demos:3,
+  ciudades:[{c:'Madrid', n:134},{c:'Valencia', n:52},{c:'Barcelona', n:51},{c:'Bilbao', n:43},{c:'Pamplona', n:31},{c:'Sevilla', n:25},{c:'Santander', n:20},{c:'Marbella', n:18}],
   demo_deals:[{name:'Pack 3 Reseñas Pastelería Menta y Chocolate', stage:'Closed Lost', fecha:'2026-09-16'},{name:'La Taberna Asturiana - El Cachopo', stage:'Closed Lost', fecha:'2026-08-25'},{name:'Triki Clínica Dental Mark', stage:'Quote Created', fecha:'2026-09-22'},{name:'MANDOYA', stage:'In Progress', fecha:'2026-09-22'},{name:'Triki Restaurante Casa Camilo', stage:'In Progress', fecha:'2026-09-17'},{name:'Triki Rolling Rock Café', stage:'Closed Lost', fecha:'2026-09-16'},{name:'Triki Pastelería Mifer', stage:'In Progress', fecha:'2026-09-16'},{name:'Triki Heladería Puerta Real', stage:'In Progress', fecha:'2026-09-16'},{name:'Triki Enjoy it Girona', stage:'Closed Lost', fecha:'2026-09-15'},{name:'d’Alicia Café Guadalmina', stage:'In Progress', fecha:'2026-09-08'},{name:'Pack 3 Reseñas. Restaurante Al Punto', stage:'Closed Lost', fecha:'2026-09-09'},{name:'Restaurante La Jamonería de Carmen', stage:'In Progress', fecha:'2026-08-25'},{name:'JuanLobo Food & Drinks - Eliminar perfil GBP', stage:'Closed Lost', fecha:'2026-08-18'},{name:'Grup Mutis (Bar Mut)', stage:'Closed Lost', fecha:'2026-07-31'},{name:'Right Side Coffee Bar', stage:'Closed Lost', fecha:'2026-07-30'},{name:'Reseñas Kubrick Bar Bilbao', stage:'In Progress', fecha:'2026-07-27'},{name:'Taberna - Restaurante El Mentidero Málaga', stage:'Closed Lost', fecha:'2026-07-28'},{name:'Reseñas Soleo', stage:'Closed Lost', fecha:'2026-07-22'},{name:'Trikis - La Tasca de Don José Plaza del Castillo', stage:'Closed Lost', fecha:'2026-07-07'},{name:'Compañía del Trópico', stage:'Closed Lost', fecha:'2026-07-07'}]
 };
 /*END:TRIKI*/
